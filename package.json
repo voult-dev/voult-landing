@@ -1,0 +1,26 @@
+{
+  "name": "voult-landing",
+  "version": "1.0.0",
+  "description": "Pre-launch waitlist landing page for voult.dev",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "author": "DevOlabode",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "ejs": "^3.1.10",
+    "ejs-mate": "^4.0.0",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.2.1",
+    "express-validator": "^7.3.2",
+    "helmet": "^8.1.0",
+    "mongoose": "^9.1.2",
+    "nodemailer": "^7.0.12"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}
