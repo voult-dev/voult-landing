@@ -7,6 +7,7 @@ const ejsMate = require('ejs-mate');
 
 const { connectDB } = require('../config/database');
 const waitlistRoutes = require('../routes/waitlist');
+const legalRoutes = require('../routes/legal');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -27,6 +28,7 @@ app.use(express.static(path.join(__dirname, '..', 'public')));
 
 // API
 app.use('/api', waitlistRoutes);
+app.use('/', legalRoutes);
 
 // Page
 app.get('/', (req, res) => {
