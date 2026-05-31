@@ -1,24 +1,42 @@
+![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)
+![Node.js Version](https://img.shields.io/badge/node-%3E%3D16-green)
+![Express.js](https://img.shields.io/badge/express-5.0.0-blue)
+![MongoDB](https://img.shields.io/badge/mongodb-%3E%3D4.0-brightgreen)
+
 # voult-landing
 
 Pre-launch waitlist landing page for **[voult.dev](https://www.voult.dev/)** — a developer-first authentication platform.
 
-Built using the **same stack and conventions as the [main voult.dev repo](https://github.com/DevOlabode/voult)**: Node.js + Express 5, EJS (with `ejs-mate` layouts), Bootstrap 5, Mongoose, Nodemailer over Brevo SMTP, Helmet, express-rate-limit, express-validator.
+## Table of Contents
+- [Overview](#overview)
+- [Features](#features)
+- [Project Layout](#project-layout)
+- [Getting Started](#getting-started)
+- [How Email Sending Works](#how-email-sending-works)
+- [Customizing](#customizing)
+- [Deploying](#deploying)
+- [Contributing](#contributing)
+- [Tests](#tests)
+- [Questions & Support](#questions--support)
+- [License](#license)
 
----
+## Overview
 
-## What's on the page
+This repository contains a pre-launch waitlist landing page for voult.dev, built using the same stack and conventions as the main voult.dev repository. It includes a waitlist form, live countdown, feature highlights, and footer with legal links.
+
+Built with: Node.js + Express 5, EJS (with `ejs-mate` layouts), Bootstrap 5, Mongoose, Nodemailer over Brevo SMTP, Helmet, express-rate-limit, express-validator.
+
+## Features
 
 1. **Hero** with a typewriter-style code snippet showing what the SDK feels like.
 2. **Waitlist form** — email input that POSTs to `/api/waitlist`. On success:
-   - the email is stored in **MongoDB** at `mongodb://127.0.0.1:27017/usersEmail`
-   - a confirmation email is sent via **Brevo SMTP** (same transport as voult.dev's `config/mailer.js`)
+   - The email is stored in **MongoDB** at `mongodb://127.0.0.1:27017/usersEmail`
+   - A confirmation email is sent via **Brevo SMTP** (same transport as voult.dev's `config/mailer.js`)
 3. **Fancy live countdown** to launch (configurable via the `LAUNCH_DATE` env var).
 4. **MVP features grid** — Security, lightweight SDK + docs, smooth DX, rich developer portal, free MVP (no card), pre-built UI kits.
 5. **Footer** with placeholder slots for your legal links (Terms, Privacy, Cookies, Security, Contact) — wire up the hrefs when your legal pages are ready.
 
----
-
-## Project layout
+## Project Layout
 
 ```
 voult-landing/
@@ -47,9 +65,7 @@ voult-landing/
 └── package.json
 ```
 
----
-
-## Getting started
+## Getting Started
 
 ### 1. Install dependencies
 
@@ -60,7 +76,7 @@ npm install
 
 ### 2. Start MongoDB locally
 
-The app connects to `mongodb://127.0.0.1:27017/usersEmail` by default — exactly as you requested. Make sure MongoDB is running locally:
+The app connects to `mongodb://127.0.0.1:27017/usersEmail` by default. Make sure MongoDB is running locally:
 
 ```bash
 # macOS (brew)
@@ -101,9 +117,7 @@ npm start
 
 Open <http://localhost:3000>.
 
----
-
-## How email sending works (and how it mirrors voult.dev)
+## How Email Sending Works
 
 This is intentionally a **1:1 mirror** of the main repo's pattern:
 
@@ -122,9 +136,7 @@ When a visitor submits their email:
 
 If the email is already in the DB, the API returns a friendly "you're already on the list" message instead of erroring.
 
----
-
-## Inspecting stored emails
+## Inspecting Stored Emails
 
 ```bash
 mongosh
@@ -146,8 +158,6 @@ Each document looks like:
 }
 ```
 
----
-
 ## Customizing
 
 - **Launch date** → change `LAUNCH_DATE` in `.env` (ISO-8601, UTC recommended).
@@ -155,8 +165,6 @@ Each document looks like:
 - **Footer legal links** → edit `views/home/landing.ejs`, in the `<footer>` block. Replace the `href="#"` placeholders with your real Terms / Privacy / Cookie / Security / Contact URLs.
 - **Features copy** → edit the `.features-grid` block in `views/home/landing.ejs`.
 - **Colors / theme** → all tokens live at the top of `public/css/landing.css` (`:root`).
-
----
 
 ## Deploying
 
@@ -167,24 +175,32 @@ Same pattern as voult.dev (Render, Railway, Fly, etc.). Required env vars in pro
 - `BREVO_USER`, `BREVO_SMTP_KEY`, `MAIL_FROM`
 - `LAUNCH_DATE`
 
----
+## Contributing
 
-## Pushing to GitHub
+Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
 
-This sandbox can't push directly, but the project is ready to go. From your machine:
+Please make sure to update tests as appropriate if you add new functionality.
 
-```bash
-cd voult-landing
-git init
-git add .
-git commit -m "feat: pre-launch landing page with waitlist + Brevo email"
-git branch -M main
-git remote add origin https://github.com/DevOlabode/voult-landing.git
-git push -u origin main
-```
+## Tests
 
----
+This project currently does not have automated tests. Manual testing is recommended:
+
+1. Test the waitlist form submission with valid and invalid emails
+2. Verify emails are stored correctly in MongoDB
+3. Check that confirmation emails are sent via Brevo
+4. Test the live countdown functionality
+5. Ensure all links in the footer work correctly when updated
+
+## Questions & Support
+
+For questions, feedback, or support regarding this project:
+
+- Email: privacy@voult.dev (for privacy-related inquiries)
+- GitHub Issues: [https://github.com/DevOlabode/voult-landing/issues](https://github.com/DevOlabode/voult-landing/issues)
+- Please check the [Privacy Policy](./views/legal/privacyPolicy.ejs) for information on how we handle your data.
 
 ## License
 
 ISC — same as the main voult.dev repo.
+
+See [LICENSE](LICENSE) for details.
