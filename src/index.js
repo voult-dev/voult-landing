@@ -35,7 +35,7 @@ app.get('/', (req, res) => {
   const launchDate =
     process.env.LAUNCH_DATE ||
     new Date(Date.now() + 1000 * 60 * 60 * 24 * 150).toISOString();
-  res.render('home/landing', {
+  res.render('home/description', {
     title: 'voult.dev — Authentication, done properly.',
     launchDate,
   });
