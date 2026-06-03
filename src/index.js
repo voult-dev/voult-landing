@@ -35,10 +35,14 @@ app.get('/', (req, res) => {
   const launchDate =
     process.env.LAUNCH_DATE ||
     new Date(Date.now() + 1000 * 60 * 60 * 24 * 150).toISOString();
-  res.render('home/description', {
+  res.render('home/landing', {
     title: 'voult.dev — Authentication, done properly.',
     launchDate,
   });
+});
+
+app.get('/about', (req, res) => {
+  res.render('home/description', { title: 'About voult.dev' });
 });
 
 // 404

@@ -1,47 +1,127 @@
 <% layout('layout/boilerplate.ejs') %>
 
-<h3>What is voult.dev?</h3>
-<p>voult.dev is a developer-first authentication platform — secure APIs,
-   lightweight SDKs, OAuth, magic links, JWT handling, and pre-built UI
-   kits. Skip the auth grind. Ship the product.</p>
+<header class="nav">
+  <div class="container nav-inner">
+    <a href="/" class="logo">
+      <img src="/images/logo.png" alt="voult.dev logo" />
+    </a>
+    <nav class="nav-links">
+      <a href="/#countdown">Launch</a>
+      <a href="/#features">Features</a>
+      <a href="/about">About</a>
+      <a href="https://github.com/voult-dev" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </div>
+</header>
 
-<h3>Why use voult.dev?</h3>
-<p>voult.dev is a developer-first authentication platform — secure APIs,
-   lightweight SDKs, OAuth, magic links, JWT handling, and pre-built UI
-   kits. Skip the auth grind. Ship the product.</p>
+<main>
+  <section class="section container">
+    <h1 class="section-title" style="text-align: left;">Frequently Asked Questions</h1>
+    <p class="section-sub" style="text-align: left;">Everything you need to know about voult.dev before joining the waitlist.</p>
 
-<h3>How does voult.dev work?</h3>
-<p>voult.dev is a developer-first authentication platform — secure APIs,
-   lightweight SDKs, OAuth, magic links, JWT handling, and pre-built UI
-   kits. Skip the auth grind. Ship the product.</p>
+    <div class="faq-list">
 
-<h3>How can I use voult.dev?</h3>
-<p>voult.dev is a developer-first authentication platform — secure APIs,
-   lightweight SDKs, OAuth, magic links, JWT handling, and pre-built UI
-   kits. Skip the auth grind. Ship the product.</p>
+      <details class="faq-item">
+        <summary class="faq-question">What is voult.dev?</summary>
+        <div class="faq-answer">
+          <p>voult.dev is a developer-first authentication platform. We provide secure APIs, lightweight SDKs, OAuth integrations, magic links, JWT handling, and pre-built UI kits so you can add authentication to your application in minutes instead of weeks.</p>
+        </div>
+      </details>
 
-<h3>How can I get started with voult.dev?</h3>
-<p>voult.dev is a developer-first authentication platform — secure APIs,
-   lightweight SDKs, OAuth, magic links, JWT handling, and pre-built UI
-   kits. Skip the auth grind. Ship the product.</p>
+      <details class="faq-item">
+        <summary class="faq-question">Why should I use voult.dev over building auth myself?</summary>
+        <div class="faq-answer">
+          <p>Building authentication correctly is hard. You need to handle password hashing, JWT rotation, CSRF protection, rate limiting, email verification, password resets, OAuth flows, and session management — all while staying up to date with security best practices. voult.dev handles all of that for you, so you can focus on building your product.</p>
+        </div>
+      </details>
 
-<h3>How can I get help with voult.dev?</h3>     
-<p>voult.dev is a developer-first authentication platform — secure APIs,
-   lightweight SDKs, OAuth, magic links, JWT handling, and pre-built UI
-   kits. Skip the auth grind. Ship the product.</p>
+      <details class="faq-item">
+        <summary class="faq-question">How does voult.dev work?</summary>
+        <div class="faq-answer">
+          <p>voult.dev provides a set of APIs and SDKs that handle the entire authentication lifecycle. You integrate our SDK into your application, configure your auth flows (email/password, OAuth, magic links), and our platform handles the rest. We manage user sessions, token refresh, security events, and provide a dashboard for monitoring.</p>
+        </div>
+      </details>
 
-<h3>How can I contact voult.dev?</h3>
-<p>voult.dev is a developer-first authentication platform — secure APIs,
-   lightweight SDKs, OAuth, magic links, JWT handling, and pre-built UI
-   kits. Skip the auth grind. Ship the product.</p>
+      <details class="faq-item">
+        <summary class="faq-question">What frameworks and languages does voult.dev support?</summary>
+        <div class="faq-answer">
+          <p>Our MVP supports Express.js and Node.js out of the box, with SDKs for JavaScript/TypeScript. We also provide pre-built UI components for React, Vue, Svelte, and plain HTML that you can drop into any project. More framework support is coming after launch.</p>
+        </div>
+      </details>
 
-<h3>How can I contact voult.dev?</h3>
-<p>voult.dev is a developer-first authentication platform — secure APIs,
-   lightweight SDKs, OAuth, magic links, JWT handling, and pre-built UI
-   kits. Skip the auth grind. Ship the product.</p>     
+      <details class="faq-item">
+        <summary class="faq-question">How can I get started with voult.dev?</summary>
+        <div class="faq-answer">
+          <p>Join the waitlist on our homepage. Once the MVP launches, you'll get early access and can sign up for a free account. Our docs will guide you through installing the SDK, configuring your first project, and going live with authentication in under 10 minutes.</p>
+        </div>
+      </details>
 
-<h3>How can I contact voult.dev?</h3>
+      <details class="faq-item">
+        <summary class="faq-question">What's included in the MVP?</summary>
+        <div class="faq-answer">
+          <p>The MVP includes: secure email/password authentication, OAuth provider support, magic link authentication, JWT with refresh token rotation, rate limiting, CSRF protection, a developer dashboard with auth metrics, and pre-built login/register UI components. It's 100% free — no credit card required.</p>
+        </div>
+      </details>
 
-<p>voult.dev is a developer-first authentication platform — secure APIs,
-   lightweight SDKs, OAuth, magic links, JWT handling, and pre-built UI
-   kits. Skip the auth grind. Ship the product.</p>     
+      <details class="faq-item">
+        <summary class="faq-question">How much does voult.dev cost?</summary>
+        <div class="faq-answer">
+          <p>The MVP is completely free — no credit card, no trial period, no hidden limits. We plan to introduce paid plans with higher usage tiers and advanced features after launch, but there will always be a generous free tier for small projects and side projects.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-question">Is voult.dev secure?</summary>
+        <div class="faq-answer">
+          <p>Security is our top priority. We use bcrypt for password hashing, JWT with refresh token rotation, CSRF protection, rate limiting, helmet security headers, and encryption in transit. We follow OWASP guidelines and conduct regular security reviews. All authentication events are logged for audit purposes.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-question">Can I self-host voult.dev?</summary>
+        <div class="faq-answer">
+          <p>Self-hosting is on our roadmap. Initially, voult.dev will be offered as a managed service for the best developer experience and security guarantees. We're exploring self-hosted options based on community demand — let us know if that's important to you when you join the waitlist.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-question">How can I get help with voult.dev?</summary>
+        <div class="faq-answer">
+          <p>Join our waitlist to get early access to our Discord community, documentation, and support channels. We're here to help you ship authentication faster. For specific questions before launch, reach out via our <a href="/contact-us">Contact Us</a> page.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-question">How can I contact voult.dev?</summary>
+        <div class="faq-answer">
+          <p>You can reach us through our <a href="/contact-us">Contact Us</a> page, or open an issue on our <a href="https://github.com/voult-dev" target="_blank" rel="noopener">GitHub repository</a>.</p>
+        </div>
+      </details>
+
+    </div>
+
+    <div class="about-cta-block">
+      <h2>Ready to skip the auth grind?</h2>
+      <p>Join the waitlist and be the first to know when we launch.</p>
+      <a href="/" class="btn-primary">Join the Waitlist</a>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <div>
+      <div class="logo">
+        <img src="/images/logo.png" alt="voult.dev logo" />
+      </div>
+      <p class="footer-tag">Authentication, done properly.</p>
+    </div>
+    <div class="footer-links">
+      <a href="/about">About</a>
+      <a href="/privacy-policy">Privacy Policy</a>
+      <a href="/contact-us">Contact us</a>
+    </div>
+    <p class="footer-copy">© <%= new Date().getFullYear() %> voult.dev — All rights reserved.</p>
+  </div>
+</footer>
