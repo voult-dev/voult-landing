@@ -11,13 +11,13 @@ module.exports.sendWaitlistEmail = async (to) => {
   return transporter.sendMail({
     from: FROM,
     to,
-    subject: "You're on the voult.dev waitlist 🔐",
+    subject: "You're on the voult.dev waitlist",
     html: `
 <div style="font-family: Inter, Arial, sans-serif; padding: 24px; background: #0b0f14;">
   <div style="max-width: 600px; margin: auto; background: #111827; padding: 32px; border-radius: 12px; border: 1px solid #1f2937;">
 
     <h1 style="color: #e5e7eb; margin: 0 0 8px; font-size: 22px;">
-      Welcome to the voult.dev waitlist 👋
+      Welcome to the voult.dev waitlist
     </h1>
 
     <p style="color: #9ca3af; font-size: 14px; margin: 0 0 24px;">

@@ -1,0 +1,37 @@
+<% layout('layout/boilerplate.ejs') %>
+
+<main>
+  <section class="section container">
+    <a href="/" class="back-link">&larr; Back</a>
+
+    <div class="feature-card">
+      <div class="feature-card-header">
+        <span class="feature-card-dot"></span>
+        <span class="feature-card-dot"></span>
+        <span class="feature-card-dot"></span>
+        <span class="title">security — voult.dev</span>
+      </div>
+      <div class="feature-card-body">
+        <div class="feature-full">
+          <h1>Security-first</h1>
+          <p class="feature-full-intro">
+            Authentication is the front door to your application. If someone gets past it, everything inside is compromised. That's why we built security into every layer of voult.dev from day one—not as an afterthought.
+          </p>
+
+          <h2>What's included</h2>
+          <ul>
+            <li><strong>Bcrypt password hashing</strong> — all passwords are hashed with bcrypt before storage, so plaintext credentials never touch your database.</li>
+            <li><strong>JWT + refresh token rotation</strong> — access tokens expire quickly and are rotated on every use. Refresh tokens are securely stored and can be revoked at any time.</li>
+            <li><strong>CSRF protection</strong> — built-in double-submit cookie pattern prevents cross-site request forgery attacks.</li>
+            <li><strong>Rate limiting</strong> — login and registration endpoints are rate-limited by default to thwart brute-force and credential-stuffing attacks.</li>
+            <li><strong>Helmet security headers</strong> — all standard security headers (CSP, HSTS, X-Frame-Options, etc.) are set automatically so you don't have to remember them.</li>
+          </ul>
+
+          <p>
+            These aren't optional add-ons or "enterprise-only" features. They're wired in and working the moment you integrate the SDK.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

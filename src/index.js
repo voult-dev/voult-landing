@@ -19,14 +19,29 @@ app.set('views', path.join(__dirname, '..', 'views'));
 
 app.use(
   helmet({
-    contentSecurityPolicy: false, 
+    contentSecurityPolicy: false, // keep simple for CDN bootstrap/fonts
   })
 );
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
-// API
+const featureRoutes = express.Router();
+const features = [
+  { key: 'security', file: 'features/security' },
+  { key: 'sdk-docs', file: 'features/sdk-docs' },
+  { key: 'dx', file: 'features/dx' },
+  { key: 'portal', file: 'features/portal' },
+  { key: 'free', file: 'features/free' },
+  { key: 'ui-kits', file: 'features/ui-kits' },
+];
+features.forEach((f) => {
+  featureRoutes.get(`/${f.key}`, (req, res) => {
+    res.render(f.file, { title: `${f.key} — voult.dev` });
+  });
+});
+
+app.use('/features', featureRoutes);
 app.use('/api', waitlistRoutes);
 app.use('/', legalRoutes);
 
