@@ -1,31 +1,13 @@
 <% layout('layout/boilerplate.ejs') %>
 
-<div class="aurora" aria-hidden="true">
-  <div class="aurora-orb"></div>
-  <div class="aurora-orb"></div>
-  <div class="aurora-orb"></div>
-</div>
-
-<header class="nav">
-  <div class="container nav-inner">
-    <a href="/" class="logo">
-      <img src="/images/logo.png" alt="voult.dev" />
-    </a>
-    <nav class="nav-links">
-      <a href="/#countdown">Launch</a>
-      <a href="/#features">Features</a>
-      <a href="/about">About</a>
-      <a href="https://github.com/voult-dev" target="_blank" rel="noopener">GitHub</a>
-    </nav>
-  </div>
-</header>
+<%- include('../partials/nav') %>
 
 <main>
-  <section class="section container">
+  <section class="section container" style="padding-top: 7.5rem;">
     <h1 class="section-title" style="text-align: left;">Frequently Asked Questions</h1>
-    <p class="section-sub" style="text-align: left;">Everything you need to know about voult.dev before joining the waitlist.</p>
+    <p class="section-sub" style="text-align: left; margin-left: 0;">Everything you need to know about voult.dev.</p>
 
-    <div class="faq-list">
+    <div class="faq-list" style="margin-left: 0;">
 
       <details class="faq-item">
         <summary class="faq-question">What is voult.dev?</summary>
@@ -58,7 +40,7 @@
       <details class="faq-item">
         <summary class="faq-question">How can I get started with voult.dev?</summary>
         <div class="faq-answer">
-          <p>Join the waitlist on our homepage. Once the MVP launches, you'll get early access and can sign up for a free account. Our docs will guide you through installing the SDK, configuring your first project, and going live with authentication in under 10 minutes.</p>
+          <p>Once the MVP launches, you can sign up for a free account. Our docs will guide you through installing the SDK, configuring your first project, and going live with authentication in under 10 minutes.</p>
         </div>
       </details>
 
@@ -86,21 +68,21 @@
       <details class="faq-item">
         <summary class="faq-question">Can I self-host voult.dev?</summary>
         <div class="faq-answer">
-          <p>Self-hosting is on our roadmap. Initially, voult.dev will be offered as a managed service for the best developer experience and security guarantees. We're exploring self-hosted options based on community demand — let us know if that's important to you when you join the waitlist.</p>
+          <p>Self-hosting is on our roadmap. Initially, voult.dev will be offered as a managed service for the best developer experience and security guarantees. We're exploring self-hosted options based on community demand.</p>
         </div>
       </details>
 
       <details class="faq-item">
         <summary class="faq-question">How can I get help with voult.dev?</summary>
         <div class="faq-answer">
-          <p>Join our waitlist to get early access to our Discord community, documentation, and support channels. We're here to help you ship authentication faster. For specific questions before launch, reach out via our <a href="/contact-us">Contact Us</a> page.</p>
+          <p>For questions before launch, reach out via our <a href="/contact-us">Contact</a> page or open an issue on our <a href="https://github.com/voult-dev" target="_blank" rel="noopener">GitHub repository</a>.</p>
         </div>
       </details>
 
       <details class="faq-item">
         <summary class="faq-question">How can I contact voult.dev?</summary>
         <div class="faq-answer">
-          <p>You can reach us through our <a href="/contact-us">Contact Us</a> page, or open an issue on our <a href="https://github.com/voult-dev" target="_blank" rel="noopener">GitHub repository</a>.</p>
+          <p>You can reach us through our <a href="/contact-us">Contact</a> page, or open an issue on our <a href="https://github.com/voult-dev" target="_blank" rel="noopener">GitHub repository</a>.</p>
         </div>
       </details>
 
@@ -108,26 +90,10 @@
 
     <div class="about-cta-block">
       <h2>Ready to skip the auth grind?</h2>
-      <p>Join the waitlist and be the first to know when we launch.</p>
-      <a href="/" class="btn-primary">Join the Waitlist</a>
+      <p>Explore the MVP features and see what's coming.</p>
+      <a href="/#features" class="btn-primary">View features</a>
     </div>
   </section>
 </main>
 
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="container footer-inner">
-    <div>
-      <div class="logo">
-        <img src="/images/logo.png" alt="voult.dev logo" />
-      </div>
-      <p class="footer-tag">Authentication, done properly.</p>
-    </div>
-    <div class="footer-links">
-      <a href="/about">About</a>
-      <a href="/privacy-policy">Privacy Policy</a>
-      <a href="/contact-us">Contact us</a>
-    </div>
-    <p class="footer-copy">© <%= new Date().getFullYear() %> voult.dev — All rights reserved.</p>
-  </div>
-</footer>
+<%- include('../partials/footer') %>

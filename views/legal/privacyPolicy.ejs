@@ -1,276 +1,147 @@
-<!-- # Privacy Policy
-
-**Last Updated: May 30, 2026**
-
-## 1. Introduction
-
-Welcome to Voult ("Voult", "we", "our", or "us").
-
-Voult is a developer-focused authentication platform that provides APIs, SDKs, and tools for user authentication, account management, authorization, and related identity services.
-
-This Privacy Policy explains how we collect, use, disclose, and safeguard information when you visit our website, join our waitlist, create an account, or use our services.
-
-By using Voult, you agree to the practices described in this Privacy Policy.
-
----
-
-## 2. Information We Collect
-
-### Information You Provide
-
-We may collect information you voluntarily provide to us, including:
-
-* Email address
-* Name or display name
-* Company or organization name
-* Account credentials
-* Support requests and communications
-* Waitlist registration information
-
-### Information Collected Automatically
-
-When you access our website or services, we may automatically collect:
-
-* IP address
-* Browser type and version
-* Device information
-* Operating system
-* Referring URLs
-* Pages visited
-* Date and time of requests
-* Usage and performance data
-
-### Authentication and Service Data
-
-When customers integrate Voult into their applications, we may process authentication-related information such as:
-
-* User identifiers
-* Login timestamps
-* Authentication events
-* OAuth provider information
-* Security and audit logs
-* Session metadata
-
-We do not intentionally collect more information than necessary to provide authentication services.
-
----
-
-## 3. How We Use Information
-
-We may use information to:
-
-* Provide and operate Voult services
-* Create and manage accounts
-* Authenticate users
-* Verify email addresses
-* Process password reset requests
-* Deliver security notifications
-* Provide customer support
-* Improve platform performance
-* Monitor service reliability
-* Detect abuse, fraud, and unauthorized access
-* Communicate product updates
-* Send launch announcements and waitlist notifications
-* Comply with legal obligations
-
----
-
-## 4. Waitlist Communications
-
-If you join the Voult waitlist, we may use your email address to:
-
-* Confirm your registration
-* Provide updates about product development
-* Notify you about launch availability
-* Invite you to early access programs
-
-You may unsubscribe from marketing communications at any time using the unsubscribe instructions provided in our emails.
-
----
-
-## 5. Cookies and Similar Technologies
-
-We may use cookies, local storage, and similar technologies to:
-
-* Maintain site functionality
-* Remember preferences
-* Improve performance
-* Analyze traffic and usage patterns
-* Enhance security
-
-You may manage cookies through your browser settings. Some features may not function correctly if cookies are disabled.
-
----
-
-## 6. Legal Basis for Processing
-
-Where applicable, we process information based on:
-
-* Your consent
-* Performance of a contract
-* Legitimate business interests
-* Compliance with legal obligations
-* Protection of users, customers, and services
-
----
-
-## 7. Information Sharing
-
-We do not sell personal information.
-
-We may share information with:
-
-### Service Providers
-
-Third-party vendors that assist with:
-
-* Hosting
-* Analytics
-* Email delivery
-* Infrastructure
-* Security monitoring
-* Customer support
-
-### Legal Compliance
-
-When required by law, regulation, court order, or legal process.
-
-### Business Transfers
-
-In connection with a merger, acquisition, financing, or sale of assets.
-
----
-
-## 8. Data Security
-
-We implement reasonable administrative, technical, and organizational safeguards designed to protect personal information.
-
-These measures may include:
-
-* Encryption in transit
-* Access controls
-* Authentication safeguards
-* Logging and monitoring
-* Secure development practices
-
-No system can guarantee absolute security, and we cannot guarantee that information will never be accessed, disclosed, altered, or destroyed.
-
----
-
-## 9. Data Retention
-
-We retain information only as long as reasonably necessary to:
-
-* Provide services
-* Maintain security records
-* Fulfill contractual obligations
-* Resolve disputes
-* Comply with legal requirements
-
-Waitlist information may be retained until launch completion, account creation, deletion request, or legal necessity.
-
----
-
-## 10. Your Rights
-
-Depending on your jurisdiction, you may have the right to:
-
-* Access personal information
-* Correct inaccurate information
-* Request deletion of information
-* Restrict certain processing activities
-* Object to processing
-* Withdraw consent
-* Request data portability
-
-To exercise these rights, contact us using the information below.
-
----
-
-## 11. International Data Transfers
-
-Your information may be processed and stored in countries where our infrastructure providers operate.
-
-By using Voult, you understand that information may be transferred across national borders where permitted by applicable law.
-
----
-
-## 12. Children's Privacy
-
-Voult is not intended for children under the age of 13.
-
-We do not knowingly collect personal information from children under 13. If we become aware that such information has been collected, we will take reasonable steps to delete it.
-
----
-
-## 13. Third-Party Services
-
-Our services may contain links to third-party websites, integrations, or services.
-
-We are not responsible for the privacy practices of those third parties.
-
----
-
-## 14. Changes to This Privacy Policy
-
-We may update this Privacy Policy periodically.
-
-When changes are made, we will update the "Last Updated" date at the top of this document.
-
-Continued use of Voult after changes become effective constitutes acceptance of the revised Privacy Policy.
-
----
-
-## 15. Contact Us
-
-If you have questions regarding this Privacy Policy or privacy-related requests, contact us at:
-
-[privacy@voult.dev](mailto:privacy@voult.dev)
-
- -->
-
-
-
 <% layout('layout/boilerplate.ejs') %>
-<h1>Privacy Policy</h1>
 
-<h5>Last Updated: <b><%= env.LAST_UPDATED %></b> </h5>
+<%- include('../partials/nav') %>
 
-<h2>1. Introduction</h2>
-<p>
-    Welcome to voult.dev ("voult.dev", "we", "our", or "us"). <br>
-    voult.dev is a developer-focused authentication platform that provides APIs, SDKs and tools for user authentication, account management, authorization and related identity services. <br>
+<main>
+  <article class="legal container">
+    <p class="legal-eyebrow">Legal</p>
+    <h1 class="legal-title">Privacy Policy</h1>
+    <p class="legal-meta">Last updated: <time><%= typeof env !== 'undefined' && env.LAST_UPDATED ? env.LAST_UPDATED : 'May 30, 2026' %></time></p>
 
-    This current website is the waitlist page for the main app that will be launched in <%= env.LAUNCH_DATE %> 
-    
-    By using voult.dev (waitlist), you agree to the practices described in this Privacy Policy.
-</p>
+    <div class="legal-body">
+      <h2>1. Introduction</h2>
+      <p>
+        Welcome to voult.dev ("voult.dev", "we", "our", or "us").
+        voult.dev is a developer-focused authentication platform that provides APIs, SDKs, and tools for user authentication, account management, authorization, and related identity services.
+      </p>
+      <p>
+        This Privacy Policy explains how we collect, use, disclose, and safeguard information when you visit our website or use our services.
+        By using voult.dev, you agree to the practices described in this Privacy Policy.
+      </p>
 
-<h2>2. Information We Collect</h2>
+      <h2>2. Information We Collect</h2>
+      <h3>Information You Provide</h3>
+      <p>We may collect information you voluntarily provide to us, including:</p>
+      <ul>
+        <li>Email address</li>
+        <li>Name or display name</li>
+        <li>Company or organization name</li>
+        <li>Account credentials</li>
+        <li>Support requests and communications</li>
+      </ul>
 
-<h4>Information You Provide</h4>
+      <h3>Information Collected Automatically</h3>
+      <p>When you access our website or services, we may automatically collect:</p>
+      <ul>
+        <li>IP address</li>
+        <li>Browser type and version</li>
+        <li>Device information</li>
+        <li>Operating system</li>
+        <li>Referring URLs</li>
+        <li>Pages visited</li>
+        <li>Date and time of requests</li>
+        <li>Usage and performance data</li>
+      </ul>
 
-<ul>
-    <li>Email Address</li>
-</ul>
+      <h3>Authentication and Service Data</h3>
+      <p>When customers integrate voult.dev into their applications, we may process authentication-related information such as:</p>
+      <ul>
+        <li>User identifiers</li>
+        <li>Login timestamps</li>
+        <li>Authentication events</li>
+        <li>OAuth provider information</li>
+        <li>Security and audit logs</li>
+        <li>Session metadata</li>
+      </ul>
+      <p>We do not intentionally collect more information than necessary to provide authentication services.</p>
 
-<h4>Information Collected Automatically</h4>
+      <h2>3. How We Use Information</h2>
+      <p>We may use information to:</p>
+      <ul>
+        <li>Provide and operate voult.dev services</li>
+        <li>Create and manage accounts</li>
+        <li>Authenticate users</li>
+        <li>Verify email addresses</li>
+        <li>Process password reset requests</li>
+        <li>Deliver security notifications</li>
+        <li>Provide customer support</li>
+        <li>Improve platform performance</li>
+        <li>Monitor service reliability</li>
+        <li>Detect abuse, fraud, and unauthorized access</li>
+        <li>Communicate product updates</li>
+        <li>Comply with legal obligations</li>
+      </ul>
 
-<ul>
-    <li>IP Addresses</li>
-    <li>Browser Type and version</li>
-    <li>Date and type of requests</li>
-    <li>Device Information</li>
-    <li>Operating System</li>
-    <li>Usage and performance data</li>
-</ul>
+      <h2>4. Cookies and Similar Technologies</h2>
+      <p>We may use cookies, local storage, and similar technologies to:</p>
+      <ul>
+        <li>Maintain site functionality</li>
+        <li>Remember preferences</li>
+        <li>Improve performance</li>
+        <li>Analyze traffic and usage patterns</li>
+        <li>Enhance security</li>
+      </ul>
+      <p>You may manage cookies through your browser settings. Some features may not function correctly if cookies are disabled.</p>
 
-<h2>3. How We Use Information</h2>
-<ul>
-    <li>Provide and improve voult.dev services</li>
-    <li>Send launch announcements and waitlist notifications</li>
-    <li>Monitor Service realibility</li>
-    <li>Communicate product updates</li>
-    <li>Improve Platform performance</li>
-    <li>Comply with legal obligations</li>
-</ul>
+      <h2>5. Legal Basis for Processing</h2>
+      <p>Where applicable, we process information based on:</p>
+      <ul>
+        <li>Your consent</li>
+        <li>Performance of a contract</li>
+        <li>Legitimate business interests</li>
+        <li>Compliance with legal obligations</li>
+        <li>Protection of users, customers, and services</li>
+      </ul>
+
+      <h2>6. Information Sharing</h2>
+      <p>We do not sell personal information. We may share information with:</p>
+      <h3>Service Providers</h3>
+      <p>Third-party vendors that assist with hosting, analytics, email delivery, infrastructure, security monitoring, and customer support.</p>
+      <h3>Legal Compliance</h3>
+      <p>When required by law, regulation, court order, or legal process.</p>
+      <h3>Business Transfers</h3>
+      <p>In connection with a merger, acquisition, financing, or sale of assets.</p>
+
+      <h2>7. Data Security</h2>
+      <p>We implement reasonable administrative, technical, and organizational safeguards designed to protect personal information, including encryption in transit, access controls, authentication safeguards, logging and monitoring, and secure development practices.</p>
+      <p>No system can guarantee absolute security, and we cannot guarantee that information will never be accessed, disclosed, altered, or destroyed.</p>
+
+      <h2>8. Data Retention</h2>
+      <p>We retain information only as long as reasonably necessary to provide services, maintain security records, fulfill contractual obligations, resolve disputes, and comply with legal requirements.</p>
+
+      <h2>9. Your Rights</h2>
+      <p>Depending on your jurisdiction, you may have the right to:</p>
+      <ul>
+        <li>Access personal information</li>
+        <li>Correct inaccurate information</li>
+        <li>Request deletion of information</li>
+        <li>Restrict certain processing activities</li>
+        <li>Object to processing</li>
+        <li>Withdraw consent</li>
+        <li>Request data portability</li>
+      </ul>
+      <p>To exercise these rights, contact us using the information below.</p>
+
+      <h2>10. International Data Transfers</h2>
+      <p>Your information may be processed and stored in countries where our infrastructure providers operate. By using voult.dev, you understand that information may be transferred across national borders where permitted by applicable law.</p>
+
+      <h2>11. Children's Privacy</h2>
+      <p>voult.dev is not intended for children under the age of 13. We do not knowingly collect personal information from children under 13. If we become aware that such information has been collected, we will take reasonable steps to delete it.</p>
+
+      <h2>12. Third-Party Services</h2>
+      <p>Our services may contain links to third-party websites, integrations, or services. We are not responsible for the privacy practices of those third parties.</p>
+
+      <h2>13. Changes to This Privacy Policy</h2>
+      <p>We may update this Privacy Policy periodically. When changes are made, we will update the "Last Updated" date at the top of this document. Continued use of voult.dev after changes become effective constitutes acceptance of the revised Privacy Policy.</p>
+
+      <h2>14. Contact Us</h2>
+      <p>
+        If you have questions regarding this Privacy Policy or privacy-related requests, contact us at
+        <a href="mailto:privacy@voult.dev">privacy@voult.dev</a>
+        or visit our <a href="/contact-us">contact page</a>.
+      </p>
+    </div>
+  </article>
+</main>
+
+<%- include('../partials/footer') %>

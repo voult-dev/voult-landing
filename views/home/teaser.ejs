@@ -1,78 +1,23 @@
 <% layout('layout/boilerplate.ejs') %>
 
-<div class="aurora" aria-hidden="true">
-  <div class="aurora-orb"></div>
-  <div class="aurora-orb"></div>
-  <div class="aurora-orb"></div>
-</div>
+<%- include('../partials/nav') %>
 
 <main>
-  <section class="container" style="padding-top: 5rem; padding-bottom: 5rem;">
-
-    <a href="/" class="brand-hero" style="margin-bottom: 2.5rem;">
-      <img src="/images/logo.png" alt="" />
-      <span class="brand-name">voult<span class="brand-tld">.dev</span></span>
-    </a>
-
-    <h1 style="text-align: center; font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; letter-spacing: -0.04em; margin: 0 0 1.25rem;">
+  <section class="hero container">
+    <h1>
       Authentication,<br />
       <span class="grad">done properly.</span>
     </h1>
 
-    <p style="max-width: 640px; margin: 0 auto 3rem; color: var(--muted-bright); font-size: 1.15rem; line-height: 1.7; text-align: center;">
-      voult.dev is a developer-first authentication platform — secure APIs, lightweight SDKs, OAuth, magic links, JWT handling, and pre-built UI kits. Skip the auth grind. Ship the product.
+    <p class="subtitle">
+      voult.dev is a developer-first authentication platform — secure APIs, lightweight SDKs, OAuth, magic links, JWT handling, and pre-built UI kits.
     </p>
 
-    <div class="features-grid" style="max-width: 960px; margin: 0 auto;">
-
-      <a href="/features/security" class="feature-link">
-        <article class="feature">
-          <span class="feature-tag">core</span>
-          <h3>Security-first</h3>
-          <p>Bcrypt password hashing, JWT + refresh rotation, CSRF protection, rate limiting, and helmet headers — wired in by default.</p>
-        </article>
-      </a>
-
-      <a href="/features/sdk-docs" class="feature-link">
-        <article class="feature">
-          <span class="feature-tag">sdk</span>
-          <h3>Lightweight SDK &amp; docs</h3>
-          <p>Tiny, typed SDKs with zero runtime bloat. Clear docs, real examples, copy-pasteable snippets — no marketing fluff.</p>
-        </article>
-      </a>
-
-      <a href="/features/dx" class="feature-link">
-        <article class="feature">
-          <span class="feature-tag">dx</span>
-          <h3>Smooth DX, easy integration</h3>
-          <p>Drop voult into an existing Express, Next, or Vite app in minutes. Sensible defaults, escape hatches when you need them.</p>
-        </article>
-      </a>
-
-      <a href="/features/portal" class="feature-link">
-        <article class="feature">
-          <span class="feature-tag">tooling</span>
-          <h3>Rich developer portal</h3>
-          <p>Interactive dashboard + CLI showing live metrics — sign-up rates, failed logins, token usage, OAuth provider breakdown.</p>
-        </article>
-      </a>
-
-      <a href="/features/free" class="feature-link">
-        <article class="feature">
-          <span class="feature-tag">pricing</span>
-          <h3>Free at launch</h3>
-          <p>No credit card. No debit card. No trial. Use the entire MVP for free while we build out advanced features.</p>
-        </article>
-      </a>
-
-      <a href="/features/ui-kits" class="feature-link">
-        <article class="feature">
-          <span class="feature-tag">ui</span>
-          <h3>Pre-built UI kits</h3>
-          <p>Drop-in login &amp; register components tailored to your stack — React, Vue, Svelte, plain HTML. Themed, accessible, yours to fork.</p>
-        </article>
-      </a>
-
+    <div class="hero-actions">
+      <a href="/#features" class="btn-primary">See features</a>
+      <a href="/about" class="btn-ghost">Learn more</a>
     </div>
   </section>
 </main>
+
+<%- include('../partials/footer') %>

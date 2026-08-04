@@ -1,3 +1,30 @@
 <% layout('layout/boilerplate.ejs') %>
-<!-- Email -->
-<h4>Contact Us</h4>
+
+<%- include('../partials/nav') %>
+
+<main>
+  <section class="legal container">
+    <p class="legal-eyebrow">Get in touch</p>
+    <h1 class="legal-title">Contact us</h1>
+    <p class="legal-lead">
+      Questions about voult.dev, partnerships, or press — reach out and we'll get back to you.
+    </p>
+
+    <div class="contact-grid">
+      <a class="contact-item" href="mailto:hello@voult.dev">
+        <span class="contact-label">General</span>
+        <span class="contact-value">hello@voult.dev</span>
+      </a>
+      <a class="contact-item" href="mailto:privacy@voult.dev">
+        <span class="contact-label">Privacy</span>
+        <span class="contact-value">privacy@voult.dev</span>
+      </a>
+      <a class="contact-item" href="https://github.com/voult-dev" target="_blank" rel="noopener">
+        <span class="contact-label">GitHub</span>
+        <span class="contact-value">github.com/voult-dev</span>
+      </a>
+    </div>
+  </section>
+</main>
+
+<%- include('../partials/footer') %>

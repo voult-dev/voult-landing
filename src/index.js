@@ -49,7 +49,6 @@ app.use('/', legalRoutes);
 app.get('/', (req, res) => {
   res.render('home/landing', {
     title: 'voult.dev — Authentication, done properly.',
-    launchDate: process.env.LAUNCH_DATE || '2026-09-01T00:00:00Z',
   });
 });
 

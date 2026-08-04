@@ -1,37 +1,10 @@
 <% layout('layout/boilerplate.ejs') %>
 
-<div class="aurora" aria-hidden="true">
-  <div class="aurora-orb"></div>
-  <div class="aurora-orb"></div>
-  <div class="aurora-orb"></div>
-</div>
-
-<header class="nav">
-  <div class="container nav-inner">
-    <a href="/" class="logo">
-      <img src="/images/logo.png" alt="voult.dev" />
-    </a>
-    <nav class="nav-links">
-      <a href="#countdown">Launch</a>
-      <a href="#features">Features</a>
-      <a href="/about">About</a>
-      <a href="https://github.com/voult-dev" target="_blank" rel="noopener">GitHub</a>
-    </nav>
-  </div>
-</header>
+<%- include('../partials/nav') %>
 
 <main>
-  <!-- HERO -->
   <section class="hero container">
-    <a href="/" class="brand-hero">
-      <img src="/images/logo.png" alt="" />
-      <span class="brand-name">voult<span class="brand-tld">.dev</span></span>
-    </a>
-
-    <div class="hero-status">
-      <span class="hero-status-dot"></span>
-      Pre-launch · MVP coming soon
-    </div>
+    <p class="hero-status">Pre-launch · MVP coming soon</p>
 
     <h1>
       Authentication,<br />
@@ -43,55 +16,27 @@
       so you skip the auth grind and ship the product.
     </p>
 
-    <form id="waitlist-form" class="waitlist" novalidate>
-      <input
-        type="email"
-        id="waitlist-email"
-        name="email"
-        placeholder="you@yourdomain.dev"
-        autocomplete="email"
-        required
-      />
-      <button type="submit" id="waitlist-submit">
-        Join the waitlist
-      </button>
-    </form>
-    <p id="waitlist-msg" class="waitlist-msg" role="status" aria-live="polite"></p>
+    <div class="hero-actions">
+      <a href="#features" class="btn-primary">See what's included</a>
+      <a href="/about" class="btn-ghost">Learn more</a>
+    </div>
 
-    <div class="snippet" aria-hidden="true">
+    <div class="snippet fade-up" aria-hidden="true">
       <div class="snippet-bar">
         <span class="snippet-dot"></span>
         <span class="snippet-dot"></span>
         <span class="snippet-dot"></span>
         <code>POST /api/auth/register</code>
       </div>
-      <pre><code id="typed-code"></code></pre>
+<pre><code><span class="t-k">const</span> res = <span class="t-k">await</span> voult.auth.<span class="t-f">register</span>({
+  email: <span class="t-s">"dev@example.com"</span>,
+  password: <span class="t-s">"StrongPassword123!"</span>,
+});
+
+<span class="t-c">// → { user, accessToken, refreshToken }</span></code></pre>
     </div>
   </section>
 
-  <!-- ABOUT CTA -->
-  <section class="section container" style="padding-top: 0;">
-    <div class="about-cta fade-up">
-      <h2 class="section-title">Curious how it works?</h2>
-      <p class="section-sub">Everything you need to know about voult.dev in one place.</p>
-      <a href="/about" class="btn-primary">Learn More</a>
-    </div>
-  </section>
-
-  <!-- COUNTDOWN -->
-  <section id="countdown" class="section container">
-    <h2 class="section-title fade-up">Launching in</h2>
-    <p class="section-sub fade-up">Mark your calendar. Free MVP. No card required.</p>
-
-    <div class="countdown fade-up" data-launch="<%= launchDate %>">
-      <div class="count-box"><div class="count-num" id="cd-days">--</div><div class="count-label">days</div></div>
-      <div class="count-box"><div class="count-num" id="cd-hours">--</div><div class="count-label">hours</div></div>
-      <div class="count-box"><div class="count-num" id="cd-mins">--</div><div class="count-label">minutes</div></div>
-      <div class="count-box"><div class="count-num" id="cd-secs">--</div><div class="count-label">seconds</div></div>
-    </div>
-  </section>
-
-  <!-- FEATURES -->
   <section id="features" class="section container">
     <h2 class="section-title fade-up">What's in the MVP</h2>
     <p class="section-sub fade-up">Everything below is included. All of it. Free.</p>
@@ -102,7 +47,6 @@
           <span class="feature-tag">core</span>
           <h3>Security-first</h3>
           <p>Bcrypt password hashing, JWT + refresh rotation, CSRF protection, rate limiting, and helmet headers — wired in by default.</p>
-          <span class="feature-arrow">Explore →</span>
         </article>
       </a>
 
@@ -111,7 +55,6 @@
           <span class="feature-tag">sdk</span>
           <h3>Lightweight SDK &amp; docs</h3>
           <p>Tiny, typed SDKs with zero runtime bloat. Clear docs, real examples, copy-pasteable snippets — no marketing fluff.</p>
-          <span class="feature-arrow">Explore →</span>
         </article>
       </a>
 
@@ -120,7 +63,6 @@
           <span class="feature-tag">dx</span>
           <h3>Smooth DX, easy integration</h3>
           <p>Drop voult into an existing Express, Next, or Vite app in minutes. Sensible defaults, escape hatches when you need them.</p>
-          <span class="feature-arrow">Explore →</span>
         </article>
       </a>
 
@@ -129,7 +71,6 @@
           <span class="feature-tag">tooling</span>
           <h3>Rich developer portal</h3>
           <p>Interactive dashboard + CLI showing live metrics — sign-up rates, failed logins, token usage, OAuth provider breakdown.</p>
-          <span class="feature-arrow">Explore →</span>
         </article>
       </a>
 
@@ -138,7 +79,6 @@
           <span class="feature-tag">pricing</span>
           <h3>MVP is 100% free</h3>
           <p>No credit card. No debit card. No trial. Use the entire MVP for free while we build out advanced features.</p>
-          <span class="feature-arrow">Explore →</span>
         </article>
       </a>
 
@@ -147,25 +87,10 @@
           <span class="feature-tag">ui</span>
           <h3>Pre-built UI kits</h3>
           <p>Drop-in login &amp; register components tailored to your stack — React, Vue, Svelte, plain HTML. Themed, accessible, yours to fork.</p>
-          <span class="feature-arrow">Explore →</span>
         </article>
       </a>
     </div>
   </section>
 </main>
 
-<footer class="footer">
-  <div class="container footer-inner">
-    <div>
-      <div class="logo">
-        <img src="/images/logo.png" alt="voult.dev" />
-      </div>
-      <p class="footer-tag">Authentication, done properly.</p>
-    </div>
-    <div class="footer-links">
-      <a href="/privacy-policy">Privacy Policy</a>
-      <a href="/contact-us">Contact us</a>
-    </div>
-    <p class="footer-copy">© <%= new Date().getFullYear() %> voult.dev — All rights reserved.</p>
-  </div>
-</footer>
+<%- include('../partials/footer') %>
