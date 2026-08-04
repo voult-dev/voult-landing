@@ -45,8 +45,21 @@ app.use('/features', featureRoutes);
 app.use('/api', waitlistRoutes);
 app.use('/', legalRoutes);
 
-// Page
+// Pages
 app.get('/', (req, res) => {
+  res.render('home/landing', {
+    title: 'voult.dev — Authentication, done properly.',
+    launchDate: process.env.LAUNCH_DATE || '2026-09-01T00:00:00Z',
+  });
+});
+
+app.get('/about', (req, res) => {
+  res.render('home/description', {
+    title: 'About — voult.dev',
+  });
+});
+
+app.get('/teaser', (req, res) => {
   res.render('home/teaser', {
     title: 'voult.dev — Authentication, done properly.',
   });
@@ -58,7 +71,11 @@ app.use((req, res) => {
 });
 
 (async () => {
-  await connectDB();
+  try {
+    await connectDB();
+  } catch (err) {
+    console.warn('[db] continuing without database:', err.message);
+  }
   app.listen(PORT, () => {
     console.log(`[server] voult-landing running → http://localhost:${PORT}`);
   });

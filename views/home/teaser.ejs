@@ -1,13 +1,20 @@
 <% layout('layout/boilerplate.ejs') %>
 
+<div class="aurora" aria-hidden="true">
+  <div class="aurora-orb"></div>
+  <div class="aurora-orb"></div>
+  <div class="aurora-orb"></div>
+</div>
+
 <main>
   <section class="container" style="padding-top: 5rem; padding-bottom: 5rem;">
 
-    <div style="text-align: center; margin-bottom: 3.5rem;">
-      <img src="/images/logo.png" alt="voult.dev logo" style="height: 52px; width: auto; filter: drop-shadow(0 0 24px rgba(99,102,241,0.25));">
-    </div>
+    <a href="/" class="brand-hero" style="margin-bottom: 2.5rem;">
+      <img src="/images/logo.png" alt="" />
+      <span class="brand-name">voult<span class="brand-tld">.dev</span></span>
+    </a>
 
-    <h1 style="text-align: center; font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; letter-spacing: -0.04em; margin: 0 0 1.25rem;">
+    <h1 style="text-align: center; font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; letter-spacing: -0.04em; margin: 0 0 1.25rem;">
       Authentication,<br />
       <span class="grad">done properly.</span>
     </h1>
@@ -69,15 +76,3 @@
     </div>
   </section>
 </main>
-
-<script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-</script>
