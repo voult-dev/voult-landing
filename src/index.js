@@ -48,7 +48,7 @@ app.use('/', legalRoutes);
 // Pages
 app.get('/', (req, res) => {
   res.render('home/landing', {
-    title: 'voult.dev — Authentication, done properly.',
+    title: 'voult.dev - Authentication, done properly.',
   });
 });
 
