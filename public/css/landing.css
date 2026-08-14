@@ -151,7 +151,7 @@ code, pre, .mono {
   padding:
     calc(var(--nav-h) + env(safe-area-inset-top, 0px) + 4.5rem)
     1.5rem
-    2.5rem;
+    1.25rem;
 }
 
 .hero-status {
@@ -292,7 +292,7 @@ code, pre, .mono {
    SECTIONS
    ============================================= */
 .section {
-  padding: 4rem 1.5rem;
+  padding: 2.5rem 1.5rem;
   position: relative;
 }
 
@@ -707,8 +707,8 @@ code, pre, .mono {
    ============================================= */
 .footer {
   border-top: 1px solid var(--line);
-  padding: 1.5rem 1.5rem 1.25rem;
-  margin-top: 1rem;
+  padding: 1.1rem 1.5rem 0.9rem;
+  margin-top: 0.25rem;
   position: relative;
   z-index: 1;
 }
@@ -746,8 +746,8 @@ code, pre, .mono {
 
 .footer-copy {
   width: 100%;
-  margin: 1rem 0 0;
-  padding-top: 1rem;
+  margin: 0.75rem 0 0;
+  padding-top: 0.75rem;
   border-top: 1px solid var(--line);
   color: #555;
   font-size: 0.8rem;
@@ -798,11 +798,11 @@ code, pre, .mono {
   .hero {
     min-height: auto;
     justify-content: flex-start;
-    padding: 2.5rem 1.5rem 1rem;
+    padding: 2.5rem 1.5rem 0.5rem;
   }
 
   .hero .snippet {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0;
   }
 
   .hero h1 {
@@ -810,16 +810,16 @@ code, pre, .mono {
   }
 
   .section {
-    padding: 2.5rem 1.5rem;
+    padding: 1.75rem 1.5rem;
   }
 
   #features {
-    padding-top: 2.75rem;
+    padding-top: 2rem;
   }
 
   .footer {
-    margin-top: 0.5rem;
-    padding: 1.25rem 1.25rem 1rem;
+    margin-top: 0;
+    padding: 1rem 1.25rem 0.85rem;
   }
 
   .feature-card-body {
