@@ -32,8 +32,8 @@ module.exports.sendWaitlistEmail = async (to) => {
     </p>
 
     <p style="font-size: 15px; color: #e5e7eb; line-height: 1.6;">
-      When we launch, the entire MVP will be <strong>completely free</strong>
-      — no credit card, no trial games. You'll be the first to know.
+      You'll be among the first to know when we launch. Keep an eye on your inbox —
+      early access details are coming soon.
     </p>
 
     <div style="margin: 28px 0;">
