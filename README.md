@@ -33,7 +33,7 @@ Built with: Node.js + Express 5, EJS (with `ejs-mate` layouts), Bootstrap 5, Mon
    - The email is stored in **MongoDB** at `mongodb://127.0.0.1:27017/usersEmail`
    - A confirmation email is sent via **Brevo SMTP** (same transport as voult.dev's `config/mailer.js`)
 3. **Fancy live countdown** to launch (configurable via the `LAUNCH_DATE` env var).
-4. **MVP features grid** — Security, lightweight SDK + docs, smooth DX, rich developer portal, pre-built UI kits.
+4. **MVP features grid** — Security, lightweight SDK + docs, smooth DX, rich developer portal, OAuth & passwordless, pre-built UI kits.
 5. **Footer** with placeholder slots for your legal links (Terms, Privacy, Cookies, Security, Contact) — wire up the hrefs when your legal pages are ready.
 
 ## Project Layout

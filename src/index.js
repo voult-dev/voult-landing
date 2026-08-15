@@ -32,6 +32,7 @@ const features = [
   { key: 'sdk-docs', file: 'features/sdk-docs' },
   { key: 'dx', file: 'features/dx' },
   { key: 'portal', file: 'features/portal' },
+  { key: 'oauth', file: 'features/oauth' },
   { key: 'ui-kits', file: 'features/ui-kits' },
 ];
 features.forEach((f) => {

@@ -1,0 +1,37 @@
+<% layout('layout/boilerplate.ejs') %>
+
+<main>
+  <section class="section container">
+    <a href="/" class="back-link">&larr; Back</a>
+
+    <div class="feature-card">
+      <div class="feature-card-header">
+        <span class="feature-card-dot"></span>
+        <span class="feature-card-dot"></span>
+        <span class="feature-card-dot"></span>
+        <span class="title">oauth — voult.dev</span>
+      </div>
+      <div class="feature-card-body">
+        <div class="feature-full">
+          <h1>OAuth &amp; passwordless</h1>
+          <p class="feature-full-intro">
+            Not every user wants another password. voult.dev ships social login and magic-link flows alongside classic email/password — so you can offer the sign-in experience your product needs without bolting on three extra libraries.
+          </p>
+
+          <h2>What's included</h2>
+          <ul>
+            <li><strong>OAuth providers</strong> — connect Google, GitHub, and other common providers with a few config values. Tokens and profile mapping are handled for you.</li>
+            <li><strong>Magic links</strong> — passwordless email sign-in that just works. Expiring, single-use links with sensible defaults and rate limits.</li>
+            <li><strong>Unified sessions</strong> — whether someone signs in with a password, OAuth, or a magic link, they land in the same session and JWT model.</li>
+            <li><strong>Account linking</strong> — users can connect multiple login methods to one account without duplicate profiles or messy merge logic on your side.</li>
+            <li><strong>Provider controls</strong> — enable or disable methods per project from the developer portal as your product evolves.</li>
+          </ul>
+
+          <p>
+            Pick the auth methods that fit your users. voult.dev keeps the plumbing consistent so you don't rewrite your app every time you add a provider.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
