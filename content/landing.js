@@ -1,5 +1,5 @@
 // Landing-page content. Every claim here is checked against the voult,
-// voult-sdk and voult-playground repos — keep it that way when editing.
+// voult-sdk and voult-playground repos. Keep it that way when editing.
 
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
@@ -30,7 +30,7 @@ import { createVoultRouter } from '@voult/express';
 const app = express();
 
 // Register, login, logout, refresh, /me, password reset,
-// email verification and MFA challenges — one router.
+// email verification and MFA challenges, all from one router.
 app.use('/api/auth', createVoultRouter());
 
 app.listen(3000);
@@ -88,7 +88,7 @@ const problems = [
 const features = [
   { icon: 'lock', title: 'Email & password', body: 'Sign up with email or username. Passwords hashed with bcrypt, strength rules enforced, unverified accounts gated.' },
   { icon: 'refresh', title: 'Sessions & tokens', body: 'Short-lived JWT access tokens and rotating refresh tokens, stored hashed and revocable per user.' },
-  { icon: 'globe', title: 'OAuth, six providers', body: 'Google, GitHub, Microsoft, Apple, Facebook and LinkedIn — configured per app, with account linking.' },
+  { icon: 'globe', title: 'OAuth, six providers', body: 'Google, GitHub, Microsoft, Apple, Facebook and LinkedIn, configured per app, with account linking.' },
   { icon: 'send', title: 'Magic links', body: 'Single-use passwordless sign-in links, redirected only to callback URLs you allowlist.' },
   { icon: 'mailcheck', title: 'Verification & recovery', body: 'Email verification and forgot/reset password flows, with the emails sent for you.' },
   { icon: 'phone', title: 'Multi-factor auth', body: 'TOTP enrollment, backup codes and an MFA challenge step on sign-in, with attempt limits.' },
@@ -100,7 +100,7 @@ const features = [
 const integrations = [
   { mark: 'JS', name: 'Node.js', detail: 'Runtime for @voult/express and @voult/sdk', status: 'Supported' },
   { mark: 'ex', name: 'Express', detail: 'Mountable router via @voult/express (4.x and 5.x)', status: 'Supported' },
-  { mark: '{}', name: 'JavaScript SDK', detail: '@voult/sdk — Node and browser clients', status: 'Supported' },
+  { mark: '{}', name: 'JavaScript SDK', detail: '@voult/sdk for Node and browser clients', status: 'Supported' },
   { mark: 'Re', name: 'React + Vite', detail: 'Works today against the Express router; the playground is built this way', status: 'Works today' },
   { mark: '⚛', name: '@voult/react', detail: 'Hooks and pre-built sign-in components', status: 'Planned' },
   { mark: 'N', name: 'Next.js', detail: 'First-class integration', status: 'Planned' },
@@ -114,7 +114,7 @@ const security = [
   { icon: 'shield', title: 'CSRF + security headers', body: 'CSRF tokens on state-changing routes; Helmet sets standard security headers.' },
   { icon: 'globe', title: 'IP allowlists', body: 'Restrict where an app can be called from.' },
   { icon: 'key', title: 'Client secret rotation', body: 'Rotate an app’s secret from the dashboard; the secret stays server-side in your backend.' },
-  { icon: 'scroll', title: 'Risk-scored audit log', body: 'High-risk actions — resets, unlinks, revocations — are flagged for review.' },
+  { icon: 'scroll', title: 'Risk-scored audit log', body: 'High-risk actions such as resets, unlinks and revocations are flagged for review.' },
 ];
 
 module.exports = { quickstart, routes, problems, features, integrations, security, highlight };

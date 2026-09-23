@@ -5,7 +5,7 @@
 
 # voult-landing
 
-Pre-launch waitlist landing page for **[voult.dev](https://www.voult.dev/)** — a developer-first authentication platform.
+Pre-launch waitlist landing page for **[voult.dev](https://www.voult.dev/)**, a developer-first authentication platform.
 
 ## Table of Contents
 - [Overview](#overview)
@@ -29,12 +29,12 @@ Built with: Node.js + Express 5, EJS (with `ejs-mate` layouts), Bootstrap 5, Mon
 ## Features
 
 1. **Hero** with a typewriter-style code snippet showing what the SDK feels like.
-2. **Waitlist form** — email input that POSTs to `/api/waitlist`. On success:
+2. **Waitlist form**: email input that POSTs to `/api/waitlist`. On success:
    - The email is stored in **MongoDB** at `mongodb://127.0.0.1:27017/usersEmail`
    - A confirmation email is sent via **Brevo SMTP** (same transport as voult.dev's `config/mailer.js`)
 3. **Fancy live countdown** to launch (configurable via the `LAUNCH_DATE` env var).
-4. **MVP features grid** — Security, lightweight SDK + docs, smooth DX, rich developer portal, OAuth & passwordless, pre-built UI kits.
-5. **Footer** with placeholder slots for your legal links (Terms, Privacy, Cookies, Security, Contact) — wire up the hrefs when your legal pages are ready.
+4. **MVP features grid**: Security, lightweight SDK + docs, smooth DX, rich developer portal, OAuth & passwordless, pre-built UI kits.
+5. **Footer** with placeholder slots for your legal links (Terms, Privacy, Cookies, Security, Contact). Wire up the hrefs when your legal pages are ready.
 
 ## Project Layout
 
@@ -50,7 +50,7 @@ voult-landing/
 ├── routes/
 │   └── waitlist.js           # POST /api/waitlist (validated + rate-limited)
 ├── services/
-│   └── emailService.js       # sendWaitlistEmail() — same pattern as voult/services/emailService.js
+│   └── emailService.js       # sendWaitlistEmail(), same pattern as voult/services/emailService.js
 ├── views/
 │   ├── layout/boilerplate.ejs   # ejs-mate layout (matches voult's pattern)
 │   ├── home/landing.ejs         # the landing page
@@ -123,8 +123,8 @@ This is intentionally a **1:1 mirror** of the main repo's pattern:
 
 | voult.dev                                | voult-landing                                |
 |------------------------------------------|----------------------------------------------|
-| `config/mailer.js` — Brevo transporter   | `config/mailer.js` — same Brevo transporter  |
-| `services/emailService.js` — `welcomeEmail`, `verifyEndUsers`, etc. | `services/emailService.js` — `sendWaitlistEmail` |
+| `config/mailer.js`: Brevo transporter   | `config/mailer.js`: same Brevo transporter  |
+| `services/emailService.js`: `welcomeEmail`, `verifyEndUsers`, etc. | `services/emailService.js`: `sendWaitlistEmail` |
 | `transporter.sendMail({ from, to, subject, html })` | identical call shape |
 
 When a visitor submits their email:
@@ -132,7 +132,7 @@ When a visitor submits their email:
 1. `POST /api/waitlist` is hit (`routes/waitlist.js`).
 2. `express-validator` validates + normalizes the email; `express-rate-limit` blocks abuse (10/req per 10 min per IP).
 3. The email is upserted into the **`waitlistemails`** collection inside the `usersEmail` MongoDB database.
-4. `sendWaitlistEmail(email)` is called fire-and-forget — it uses the **exact same Brevo transporter** as voult.dev to deliver a dark-themed confirmation email.
+4. `sendWaitlistEmail(email)` is called fire-and-forget. It uses the **exact same Brevo transporter** as voult.dev to deliver a dark-themed confirmation email.
 
 If the email is already in the DB, the API returns a friendly "you're already on the list" message instead of erroring.
 
@@ -171,7 +171,7 @@ Each document looks like:
 Same pattern as voult.dev (Render, Railway, Fly, etc.). Required env vars in production:
 
 - `NODE_ENV=production`
-- `MONGO_URI` (point at a hosted MongoDB — Atlas works well)
+- `MONGO_URI` (point at a hosted MongoDB; Atlas works well)
 - `BREVO_USER`, `BREVO_SMTP_KEY`, `MAIL_FROM`
 - `LAUNCH_DATE`
 
@@ -201,6 +201,6 @@ For questions, feedback, or support regarding this project:
 
 ## License
 
-ISC — same as the main voult.dev repo.
+ISC, same as the main voult.dev repo.
 
 See [LICENSE](LICENSE) for details.

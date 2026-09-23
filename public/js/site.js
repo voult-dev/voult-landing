@@ -2,7 +2,7 @@
   const root = document.documentElement;
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Theme toggle — initial theme is set inline in <head> to avoid a flash.
+  // Theme toggle. The initial theme is set inline in <head> to avoid a flash.
   const toggle = document.querySelector('[data-theme-toggle]');
   const syncToggle = () => {
     if (!toggle) return;

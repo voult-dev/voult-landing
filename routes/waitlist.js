@@ -34,7 +34,7 @@ router.post(
         return res.status(200).json({
           ok: true,
           alreadyOnList: true,
-          message: "You're already on the list — we'll be in touch.",
+          message: "You're already on the list. We'll be in touch.",
         });
       }
 
@@ -44,7 +44,7 @@ router.post(
         ip: req.ip,
       });
 
-      // Fire-and-forget — don't block the response on SMTP latency,
+      // Fire-and-forget: don't block the response on SMTP latency,
       // but log failures so we can debug.
       sendWaitlistEmail(email).catch((err) =>
         console.error('[waitlist] email send failed:', err.message)

@@ -25,8 +25,8 @@ app.use(
 );
 const launchDate = new Date(process.env.LAUNCH_DATE);
 app.locals.site = {
-  // Pre-launch the API reference is only served from staging; override at launch.
-  docsUrl: process.env.DOCS_URL || 'https://staging.voult.dev/docs',
+  // Docs and playground links stay hidden ("Soon") until their URLs are set.
+  docsUrl: process.env.DOCS_URL || null,
   playgroundUrl: process.env.PLAYGROUND_URL || null,
   githubUrl: 'https://github.com/voult-dev',
   npmUrl: (pkg) => `https://www.npmjs.com/package/${pkg}`,
@@ -52,7 +52,7 @@ const features = [
 ];
 features.forEach((f) => {
   featureRoutes.get(`/${f.key}`, (req, res) => {
-    res.render(f.file, { title: `${f.key} — voult.dev` });
+    res.render(f.file, { title: `${f.key} | voult.dev` });
   });
 });
 
@@ -63,20 +63,20 @@ app.use('/', legalRoutes);
 // Pages
 app.get('/', (req, res) => {
   res.render('home/landing', {
-    title: 'Voult — Authentication infrastructure for Node.js developers',
+    title: 'Voult | Authentication infrastructure for Node.js developers',
     ...landing,
   });
 });
 
 app.get('/about', (req, res) => {
   res.render('home/description', {
-    title: 'About — voult.dev',
+    title: 'About | voult.dev',
   });
 });
 
 app.get('/teaser', (req, res) => {
   res.render('home/teaser', {
-    title: 'voult.dev — Authentication, done properly.',
+    title: 'voult.dev | Authentication, done properly.',
   });
 });
 

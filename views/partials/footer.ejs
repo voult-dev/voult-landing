@@ -3,7 +3,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <%- include('logo') %>
-        <p>Authentication infrastructure for Node.js developers — sign-in, sessions and security controls you don't have to build yourself.</p>
+        <p>Authentication infrastructure for Node.js developers: sign-in, sessions and security controls you don't have to build yourself.</p>
       </div>
 
       <nav class="footer-col" aria-label="Product">
@@ -12,12 +12,14 @@
         <a href="/#pricing">Pricing</a>
         <% if (site.playgroundUrl) { %><a href="<%= site.playgroundUrl %>" target="_blank" rel="noopener">Playground</a>
         <% } else { %><span aria-disabled="true">Playground <span class="badge badge-sm">Soon</span></span><% } %>
-        <a href="<%= site.docsUrl %>" target="_blank" rel="noopener">Docs</a>
+        <% if (site.docsUrl) { %><a href="<%= site.docsUrl %>" target="_blank" rel="noopener">Docs</a>
+        <% } else { %><span aria-disabled="true">Docs <span class="badge badge-sm">Soon</span></span><% } %>
       </nav>
 
       <nav class="footer-col" aria-label="Developers">
         <h2>Developers</h2>
-        <a href="<%= site.docsUrl %>" target="_blank" rel="noopener">API reference</a>
+        <% if (site.docsUrl) { %><a href="<%= site.docsUrl %>" target="_blank" rel="noopener">API reference</a>
+        <% } else { %><span aria-disabled="true">API reference <span class="badge badge-sm">Soon</span></span><% } %>
         <a href="<%= site.npmUrl('@voult/sdk') %>" target="_blank" rel="noopener">SDK</a>
         <a href="<%= site.npmUrl('@voult/express') %>" target="_blank" rel="noopener">Express router</a>
         <a href="<%= site.npmUrl('@voult/cli') %>" target="_blank" rel="noopener">CLI</a>

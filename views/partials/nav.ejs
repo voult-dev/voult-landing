@@ -4,7 +4,11 @@
 
     <nav class="nav-links" id="nav-menu" aria-label="Primary">
       <a href="/#features">Features</a>
-      <a href="<%= site.docsUrl %>" target="_blank" rel="noopener">Docs</a>
+      <% if (site.docsUrl) { %>
+        <a href="<%= site.docsUrl %>" target="_blank" rel="noopener">Docs</a>
+      <% } else { %>
+        <span class="nav-soon" aria-disabled="true">Docs <span class="badge badge-sm">Soon</span></span>
+      <% } %>
       <% if (site.playgroundUrl) { %>
         <a href="<%= site.playgroundUrl %>" target="_blank" rel="noopener">Playground</a>
       <% } else { %>
@@ -16,8 +20,10 @@
       </a>
       <% if (site.waitlistOpen) { %>
         <a href="/#start" class="btn btn-primary nav-cta-mobile">Get early access</a>
-      <% } else { %>
+      <% } else if (site.docsUrl) { %>
         <a href="<%= site.docsUrl %>" target="_blank" rel="noopener" class="btn btn-primary nav-cta-mobile">Read the docs</a>
+      <% } else { %>
+        <a href="/contact-us" class="btn btn-primary nav-cta-mobile">Contact us</a>
       <% } %>
     </nav>
 
@@ -28,8 +34,10 @@
       </button>
       <% if (site.waitlistOpen) { %>
         <a href="/#start" class="btn btn-primary btn-sm nav-cta">Get early access</a>
-      <% } else { %>
+      <% } else if (site.docsUrl) { %>
         <a href="<%= site.docsUrl %>" target="_blank" rel="noopener" class="btn btn-primary btn-sm nav-cta">Read the docs</a>
+      <% } else { %>
+        <a href="/contact-us" class="btn btn-primary btn-sm nav-cta">Contact us</a>
       <% } %>
       <button type="button" class="icon-btn nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
         <span class="nav-toggle-open"><%- include('icon', { name: 'menu', size: 18 }) %></span>

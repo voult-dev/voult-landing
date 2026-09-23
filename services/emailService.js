@@ -21,18 +21,18 @@ module.exports.sendWaitlistEmail = async (to) => {
     </h1>
 
     <p style="color: #9ca3af; font-size: 14px; margin: 0 0 24px;">
-      Authentication, done properly — for developers, by a developer.
+      Authentication, done properly. For developers, by a developer.
     </p>
 
     <p style="font-size: 15px; color: #e5e7eb; line-height: 1.6;">
       Thanks for signing up. You're officially on the list to get early access
-      to <strong style="color:#6366f1;">voult.dev</strong> — a developer-first
+      to <strong style="color:#6366f1;">voult.dev</strong>, a developer-first
       authentication platform with secure APIs, lightweight SDKs, OAuth,
       magic links, pre-built UI kits, and a rich developer dashboard.
     </p>
 
     <p style="font-size: 15px; color: #e5e7eb; line-height: 1.6;">
-      You'll be among the first to know when we launch. Keep an eye on your inbox —
+      You'll be among the first to know when we launch. Keep an eye on your inbox:
       early access details are coming soon.
     </p>
 
@@ -50,7 +50,7 @@ module.exports.sendWaitlistEmail = async (to) => {
       You're receiving this because you signed up at voult.dev's pre-launch page.
       If that wasn't you, you can safely ignore this email.
     </p>
-    <p style="font-size: 12px; color: #6b7280; margin-top: 8px;">— The voult.dev team</p>
+    <p style="font-size: 12px; color: #6b7280; margin-top: 8px;">The voult.dev team</p>
   </div>
 </div>
     `,
