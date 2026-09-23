@@ -49,7 +49,7 @@
     window.matchMedia('(min-width: 901px)').addEventListener('change', (e) => e.matches && setOpen(false));
   }
 
-  // Tabs (code block + console preview): WAI-ARIA tabs with arrow-key support.
+  // Tabs (code block + product console): WAI-ARIA tabs with arrow-key support.
   document.querySelectorAll('[role="tablist"]').forEach((list) => {
     const tabs = [...list.querySelectorAll('[role="tab"]')];
     const select = (tab) => {
@@ -63,8 +63,9 @@
     tabs.forEach((tab, i) => {
       tab.addEventListener('click', () => select(tab));
       tab.addEventListener('keydown', (e) => {
-        const d = { ArrowRight: 1, ArrowLeft: -1 }[e.key];
+        const d = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[e.key];
         if (!d) return;
+        e.preventDefault();
         const next = tabs[(i + d + tabs.length) % tabs.length];
         select(next);
         next.focus();

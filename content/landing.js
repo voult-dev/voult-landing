@@ -22,6 +22,7 @@ function highlight(code, lang) {
 
 const snippet = (label, lang, code) => ({ label, lang, html: highlight(code.trim(), lang) });
 
+// From voult/docs/integration/QUICK_START.md and the @voult/sdk README.
 const quickstart = [
   snippet('server.js', 'js', `
 import express from 'express';
@@ -29,16 +30,11 @@ import { createVoultRouter } from '@voult/express';
 
 const app = express();
 
-// Register, login, logout, refresh, /me, password reset,
-// email verification and MFA challenges, all from one router.
+// Reads VOULT_CLIENT_ID, VOULT_CLIENT_SECRET and
+// VOULT_SESSION_SECRET from the .env written by \`voult init\`.
 app.use('/api/auth', createVoultRouter());
 
 app.listen(3000);
-`),
-  snippet('Terminal', 'bash', `
-npm install express @voult/express @voult/sdk
-npx voult init        # writes .env with your app credentials
-node --env-file=.env server.js
 `),
   snippet('client.js', 'js', `
 // Cookie strategy: tokens live in httpOnly cookies, never in JS.
@@ -67,9 +63,13 @@ if (result.mfaRequired) {
 `),
 ];
 
+const install = 'npm install express @voult/express @voult/sdk';
+
+// Subset of the routes createVoultRouter() mounts (@voult/express README).
 const routes = [
   ['POST', '/register'],
   ['POST', '/email-login'],
+  ['POST', '/username-login'],
   ['POST', '/sessions/refresh'],
   ['GET', '/user/me'],
   ['POST', '/user/forgot-password'],
@@ -78,46 +78,108 @@ const routes = [
   ['POST', '/logout'],
 ];
 
-const problems = [
-  'Password hashing', 'Access tokens', 'Refresh rotation', 'Session revocation',
-  'OAuth callbacks', 'Account linking', 'Email verification', 'Password resets',
-  'Magic links', 'TOTP + backup codes', 'Passkeys', 'Brute-force lockout',
-  'Rate limiting', 'CSRF', 'Audit trails',
+// "Why Voult": an illustrative in-house auth module, not real Voult code.
+const inHouse = [
+  'auth/password-hash.js',
+  'auth/login.js',
+  'auth/lockout.js',
+  'auth/tokens/access-jwt.js',
+  'auth/tokens/refresh-rotation.js',
+  'auth/sessions/revoke.js',
+  'auth/email/verify.js',
+  'auth/email/reset-password.js',
+  'auth/magic-link.js',
+  'auth/oauth/google.js',
+  'auth/oauth/github.js',
+  'auth/oauth/…4 more providers',
+  'auth/mfa/totp.js',
+  'auth/mfa/backup-codes.js',
+  'auth/passkeys/webauthn.js',
+  'auth/audit-log.js',
+  'middleware/rate-limit.js',
+  'middleware/csrf.js',
 ];
 
-const features = [
-  { icon: 'lock', title: 'Email & password', body: 'Sign up with email or username. Passwords hashed with bcrypt, strength rules enforced, unverified accounts gated.' },
-  { icon: 'refresh', title: 'Sessions & tokens', body: 'Short-lived JWT access tokens and rotating refresh tokens, stored hashed and revocable per user.' },
-  { icon: 'globe', title: 'OAuth, six providers', body: 'Google, GitHub, Microsoft, Apple, Facebook and LinkedIn, configured per app, with account linking.' },
-  { icon: 'send', title: 'Magic links', body: 'Single-use passwordless sign-in links, redirected only to callback URLs you allowlist.' },
-  { icon: 'mailcheck', title: 'Verification & recovery', body: 'Email verification and forgot/reset password flows, with the emails sent for you.' },
-  { icon: 'phone', title: 'Multi-factor auth', body: 'TOTP enrollment, backup codes and an MFA challenge step on sign-in, with attempt limits.' },
-  { icon: 'fingerprint', title: 'Passkeys', body: 'WebAuthn registration and sign-in with platform passkeys, alongside passwords or instead of them.' },
-  { icon: 'scroll', title: 'Audit log', body: 'Logins, failures, resets and revocations recorded per app, each tagged with a risk level.' },
-  { icon: 'dashboard', title: 'Developer dashboard', body: 'Create apps, copy API credentials, rotate client secrets and configure each OAuth provider.' },
+// Login as it actually flows through @voult/express (cookie strategy).
+const loginFlow = [
+  { from: 0, to: 1, label: 'POST /api/auth/email-login', note: 'email + password' },
+  { from: 1, to: 2, label: 'Authenticated with your client ID + secret', note: 'the secret never reaches the browser' },
+  { at: 2, label: 'Checks lockout, verifies the bcrypt hash, issues an MFA challenge if enabled, writes an audit event' },
+  { from: 2, to: 1, label: 'Access token + refresh token', note: 'short-lived JWT, rotating refresh token' },
+  { from: 1, to: 0, label: 'Set-Cookie: httpOnly', note: 'refreshed via /sessions/refresh' },
 ];
 
-const integrations = [
-  { mark: 'JS', name: 'Node.js', detail: 'Runtime for @voult/express and @voult/sdk', status: 'Supported' },
-  { mark: 'ex', name: 'Express', detail: 'Mountable router via @voult/express (4.x and 5.x)', status: 'Supported' },
-  { mark: '{}', name: 'JavaScript SDK', detail: '@voult/sdk for Node and browser clients', status: 'Supported' },
-  { mark: 'Re', name: 'React + Vite', detail: 'Works today against the Express router; the playground is built this way', status: 'Works today' },
-  { mark: '⚛', name: '@voult/react', detail: 'Hooks and pre-built sign-in components', status: 'Planned' },
-  { mark: 'N', name: 'Next.js', detail: 'First-class integration', status: 'Planned' },
+const A = 'Available', P = 'Planned', W = 'In progress';
+const capabilities = [
+  {
+    id: 'methods',
+    title: 'Sign-in methods',
+    body: 'Every method lands in the same user record and the same session model.',
+    items: [
+      ['Email + password', 'bcrypt-hashed, strength rules enforced', A],
+      ['Username + password', 'register and log in by username', A],
+      ['OAuth', 'Google, GitHub, Microsoft, Apple, Facebook, LinkedIn', A],
+      ['Magic links', 'single-use, allowlisted redirect URIs', A],
+      ['Passkeys', 'WebAuthn registration and sign-in', A],
+      ['Email verification', 'unverified accounts can’t log in', A],
+      ['Password reset', 'forgot / reset flow with emails sent by Voult', A],
+      ['Account linking', 'connect several providers to one user', A],
+    ],
+  },
+  {
+    id: 'sessions',
+    title: 'Sessions & security',
+    body: 'Secure defaults that are on for every app, not settings you have to find.',
+    items: [
+      ['Access tokens', 'short-lived JWTs with token versioning', A],
+      ['Refresh rotation', 'replaying an old token revokes every session', A],
+      ['Session management', 'list and revoke sessions per user', A],
+      ['MFA', 'TOTP with backup codes and attempt limits', A],
+      ['Account lockout', 'after 5 failed password attempts', A],
+      ['Rate limiting', 'Redis-backed limits on sensitive endpoints', A],
+      ['CSRF + headers', 'CSRF tokens and Helmet security headers', A],
+      ['IP allowlists', 'per app, with alerts for new IPs', A],
+      ['Audit log', 'every auth event, tagged with a risk level', A],
+    ],
+  },
+  {
+    id: 'tooling',
+    title: 'Developer tooling',
+    body: 'Published packages today; the rest is on the road to launch.',
+    items: [
+      ['@voult/sdk', 'JavaScript client for Node and the browser', A],
+      ['@voult/express', 'mountable auth router, cookie or bearer sessions', A],
+      ['@voult/cli', '`voult init` writes .env and a session secret', A],
+      ['Developer dashboard', 'apps, credentials, secret rotation, OAuth config', A],
+      ['Documentation', 'quick start and API reference', W],
+      ['Playground', 'try every flow against a real app', W],
+      ['@voult/react', 'hooks and pre-built sign-in components', P],
+      ['voult doctor', 'checks your integration end to end', P],
+    ],
+  },
 ];
 
-const security = [
-  { icon: 'hash', title: 'bcrypt password hashing', body: 'Plaintext passwords are never stored.' },
-  { icon: 'refresh', title: 'Refresh-token reuse detection', body: 'Replaying a rotated refresh token revokes every session for that user and logs a critical event.' },
-  { icon: 'ban', title: 'Account lockout', body: 'Five failed password attempts lock the account; MFA codes have their own attempt limit.' },
-  { icon: 'gauge', title: 'Rate limiting', body: 'Sensitive endpoints are rate-limited, with a Redis-backed store.' },
-  { icon: 'shield', title: 'CSRF + security headers', body: 'CSRF tokens on state-changing routes; Helmet sets standard security headers.' },
-  { icon: 'globe', title: 'IP allowlists', body: 'Restrict where an app can be called from.' },
-  { icon: 'key', title: 'Client secret rotation', body: 'Rotate an app’s secret from the dashboard; the secret stays server-side in your backend.' },
-  { icon: 'scroll', title: 'Risk-scored audit log', body: 'High-risk actions such as resets, unlinks and revocations are flagged for review.' },
+// From voult/docs/dx (PHASE_1..3) and voult/docs/launch.
+const roadmap = [
+  {
+    stage: 'Shipped',
+    items: ['Core auth API: passwords, OAuth, magic links, MFA, passkeys', '@voult/sdk, @voult/express and @voult/cli on npm', 'Developer dashboard: apps, credentials, OAuth setup'],
+  },
+  {
+    stage: 'In progress',
+    items: ['Documentation and quick start', 'Dashboard and playground redesign', 'Terms and privacy policy for launch'],
+  },
+  {
+    stage: 'Next',
+    items: ['Private beta, then hardening before launch', 'Voult-hosted OAuth routes in @voult/express', '@voult/react and `voult doctor`'],
+  },
+  {
+    stage: 'Later',
+    items: ['@voult/next for Next.js', 'create-voult-app', 'API version headers and deploy guides'],
+  },
 ];
 
-module.exports = { quickstart, routes, problems, features, integrations, security, highlight };
+module.exports = { quickstart, install, routes, inHouse, loginFlow, capabilities, roadmap, highlight };
 
 if (require.main === module) {
   const assert = require('assert');

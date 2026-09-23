@@ -1,30 +1,20 @@
+<%
+const cta = site.waitlistOpen ? ['/#start', 'Get early access'] : ['/#quickstart', 'Get started'];
+const soon = (label) => `<span class="nav-soon" aria-disabled="true">${label} <span class="badge badge-sm">Soon</span></span>`;
+%>
 <header class="nav" data-nav>
   <div class="container nav-inner">
     <%- include('logo') %>
 
     <nav class="nav-links" id="nav-menu" aria-label="Primary">
-      <a href="/#features">Features</a>
-      <% if (site.docsUrl) { %>
-        <a href="<%= site.docsUrl %>" target="_blank" rel="noopener">Docs</a>
-      <% } else { %>
-        <span class="nav-soon" aria-disabled="true">Docs <span class="badge badge-sm">Soon</span></span>
-      <% } %>
-      <% if (site.playgroundUrl) { %>
-        <a href="<%= site.playgroundUrl %>" target="_blank" rel="noopener">Playground</a>
-      <% } else { %>
-        <span class="nav-soon" aria-disabled="true">Playground <span class="badge badge-sm">Soon</span></span>
-      <% } %>
+      <a href="/#capabilities">Product</a>
+      <% if (site.docsUrl) { %><a href="<%= site.docsUrl %>" target="_blank" rel="noopener">Docs</a><% } else { %><%- soon('Docs') %><% } %>
+      <% if (site.playgroundUrl) { %><a href="<%= site.playgroundUrl %>" target="_blank" rel="noopener">Playground</a><% } else { %><%- soon('Playground') %><% } %>
       <a href="/#pricing">Pricing</a>
       <a href="<%= site.githubUrl %>" target="_blank" rel="noopener" class="nav-github">
         <%- include('icon', { name: 'github', size: 16 }) %><span>GitHub</span>
       </a>
-      <% if (site.waitlistOpen) { %>
-        <a href="/#start" class="btn btn-primary nav-cta-mobile">Get early access</a>
-      <% } else if (site.docsUrl) { %>
-        <a href="<%= site.docsUrl %>" target="_blank" rel="noopener" class="btn btn-primary nav-cta-mobile">Read the docs</a>
-      <% } else { %>
-        <a href="/contact-us" class="btn btn-primary nav-cta-mobile">Contact us</a>
-      <% } %>
+      <a href="<%= cta[0] %>" class="btn btn-primary nav-cta-mobile"><%= cta[1] %></a>
     </nav>
 
     <div class="nav-actions">
@@ -32,13 +22,7 @@
         <span class="theme-icon-light"><%- include('icon', { name: 'moon', size: 16 }) %></span>
         <span class="theme-icon-dark"><%- include('icon', { name: 'sun', size: 16 }) %></span>
       </button>
-      <% if (site.waitlistOpen) { %>
-        <a href="/#start" class="btn btn-primary btn-sm nav-cta">Get early access</a>
-      <% } else if (site.docsUrl) { %>
-        <a href="<%= site.docsUrl %>" target="_blank" rel="noopener" class="btn btn-primary btn-sm nav-cta">Read the docs</a>
-      <% } else { %>
-        <a href="/contact-us" class="btn btn-primary btn-sm nav-cta">Contact us</a>
-      <% } %>
+      <a href="<%= cta[0] %>" class="btn btn-primary btn-sm nav-cta"><%= cta[1] %></a>
       <button type="button" class="icon-btn nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
         <span class="nav-toggle-open"><%- include('icon', { name: 'menu', size: 18 }) %></span>
         <span class="nav-toggle-close"><%- include('icon', { name: 'x', size: 18 }) %></span>
