@@ -194,9 +194,8 @@ code, pre, .mono { font-family: var(--font-mono); font-variant-ligatures: none; 
   white-space: nowrap;
 }
 /* Inside UI mocks and lists, identifiers stay mono but drop the chip. */
-.console code, .route code, .cv-env code, .cap-item code, .roadmap code { border: 0; background: none; padding: 0; }
+.console code, .route code, .cv-env code, .cap-item code { border: 0; background: none; padding: 0; }
 .cap-item strong code { font-size: 0.9em; font-weight: var(--w-medium); }
-.roadmap code { font-size: 0.9em; color: var(--text); }
 
 :focus-visible {
   outline: 2px solid var(--accent);
@@ -223,7 +222,7 @@ code, pre, .mono { font-family: var(--font-mono); font-variant-ligatures: none; 
 .text-bad { color: var(--bad); }
 
 /* Single-column grids must not grow to fit wide children (code, tables). */
-.hero-head, .why-grid, .dx-grid, .cap, .pricing, .cta-inner, .roadmap { grid-template-columns: minmax(0, 1fr); }
+.hero-head, .why-grid, .dx-grid, .cap, .pricing, .cta-inner { grid-template-columns: minmax(0, 1fr); }
 
 /* =============================================================
    Typography system
@@ -847,23 +846,7 @@ h1, h2, h3, h4 { color: var(--text); font-weight: var(--w-semibold); }
   .code-lang { display: none; }
 }
 
-/* 05 Road to launch */
-.roadmap { display: grid; gap: 32px; }
-@media (min-width: 640px) { .roadmap { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (min-width: 1000px) { .roadmap { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; } }
-.roadmap > li { position: relative; padding-top: 22px; border-top: 2px solid var(--border-strong); }
-.road-stage { display: flex; align-items: center; gap: 8px; font-size: var(--t-small); font-weight: var(--w-semibold); color: var(--text); margin-bottom: 10px; }
-.road-stage i { position: absolute; top: -7px; left: 0; width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--border-strong); background: var(--bg); }
-.roadmap ul li { padding: 7px 0; font-size: var(--t-small); color: var(--text-2); border-bottom: 1px solid var(--border); }
-.road-shipped { border-top-color: var(--ok) !important; }
-.road-shipped .road-stage { color: var(--ok); }
-.road-shipped .road-stage i { border-color: var(--ok); background: var(--ok); }
-.road-in-progress { border-top-color: var(--accent) !important; }
-.road-in-progress .road-stage { color: var(--accent); }
-.road-in-progress .road-stage i { border-color: var(--accent); background: linear-gradient(90deg, var(--accent) 50%, var(--bg) 50%); }
-.road-next, .road-later { border-top-style: dashed !important; }
-
-/* 06 Pricing */
+/* 05 Pricing */
 .pricing { display: grid; gap: 32px; }
 @media (min-width: 960px) { .pricing { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 64px; align-items: start; } }
 .pricing-table > div { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 16px; padding: 16px 0; border-top: 1px solid var(--border-strong); }

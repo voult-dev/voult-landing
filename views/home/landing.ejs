@@ -11,9 +11,9 @@ const ARROW = include('../partials/icon', { name: 'arrow', size: 16 });
   <!-- Hero: what it is, why it matters, what to do next. The console carries the weight. -->
   <section class="hero">
     <div class="container">
-      <a class="release" href="#roadmap">
+      <a class="release" href="#capabilities">
         <span class="release-tag">Pre-release</span>
-        <span>In active development · <%= site.launchLabel ? `Launching ${site.launchLabel}` : 'Launch date to be announced' %></span>
+        <span>In active development · See what’s available today</span>
         <%- include('../partials/icon', { name: 'arrow', size: 14 }) %>
       </a>
 
@@ -201,35 +201,10 @@ const ARROW = include('../partials/icon', { name: 'arrow', size: 16 });
     </div>
   </section>
 
-  <!-- 05 Road to launch -->
-  <section class="section" id="roadmap">
-    <div class="container">
-      <p class="label"><span>05</span>Road to launch</p>
-      <div class="section-head reveal">
-        <h2>Voult isn’t public yet. Here is where it stands.</h2>
-        <p class="section-lede">
-          <% if (site.waitlistOpen) { %>
-            Public launch is planned for <%= site.launchLabel %>. The waitlist is open, and members get access first.
-          <% } else { %>
-            The launch date isn’t set yet. The waitlist opens the day it is.
-          <% } %>
-        </p>
-      </div>
-      <ol class="roadmap reveal">
-        <% roadmap.forEach((r) => { %>
-          <li class="road-<%= r.stage.toLowerCase().replace(' ', '-') %>">
-            <p class="road-stage"><i aria-hidden="true"></i><%= r.stage %></p>
-            <ul><% r.items.forEach((it) => { %><li><%- md(it) %></li><% }) %></ul>
-          </li>
-        <% }) %>
-      </ol>
-    </div>
-  </section>
-
-  <!-- 06 Pricing -->
+  <!-- 05 Pricing -->
   <section class="section section-alt" id="pricing">
     <div class="container">
-      <p class="label"><span>06</span>Pricing</p>
+      <p class="label"><span>05</span>Pricing</p>
       <div class="pricing reveal">
         <div>
           <h2>Pricing is published before launch.</h2>
@@ -237,9 +212,9 @@ const ARROW = include('../partials/icon', { name: 'arrow', size: 16 });
           <a href="/contact-us" class="text-link">Contact us <%- include('../partials/icon', { name: 'arrow', size: 14 }) %></a>
         </div>
         <dl class="pricing-table">
-          <div><dt>Early access</dt><dd><%= site.waitlistOpen ? 'Open now through the waitlist' : 'Opens with the launch date' %></dd></div>
+          <div><dt>Early access</dt><dd><%= site.waitlistOpen ? 'Open now through the waitlist' : 'Not open yet' %></dd></div>
           <div><dt>Included</dt><dd>The full auth API, the three npm packages, the dashboard and audit log</dd></div>
-          <div><dt>Launch plans</dt><dd>Announced before public launch, to early-access members first</dd></div>
+          <div><dt>Plans</dt><dd>Published before public launch, to early-access members first</dd></div>
         </dl>
       </div>
     </div>
@@ -253,7 +228,7 @@ const ARROW = include('../partials/icon', { name: 'arrow', size: 16 });
         <% if (site.waitlistOpen) { %>
           <p>Join the waitlist for access before launch. We’ll send one confirmation email now and reach out when access opens.</p>
         <% } else { %>
-          <p>Voult is in active development. The waitlist opens as soon as the launch date is set. Until then, the packages are on npm and we’re happy to talk.</p>
+          <p>Voult is in active development. The packages are on npm, and we’re happy to talk.</p>
         <% } %>
       </div>
       <div class="cta-form">

@@ -145,7 +145,7 @@ const capabilities = [
   {
     id: 'tooling',
     title: 'Developer tooling',
-    body: 'Published packages today; the rest is on the road to launch.',
+    body: 'Published packages today; the rest is marked as in progress or planned.',
     items: [
       ['`@voult/sdk`', 'JavaScript client for Node and the browser', A],
       ['`@voult/express`', 'mountable auth router, cookie or bearer sessions', A],
@@ -159,27 +159,7 @@ const capabilities = [
   },
 ];
 
-// From voult/docs/dx (PHASE_1..3) and voult/docs/launch.
-const roadmap = [
-  {
-    stage: 'Shipped',
-    items: ['Core auth API: passwords, OAuth, magic links, MFA, passkeys', '`@voult/sdk`, `@voult/express` and `@voult/cli` on npm', 'Developer dashboard: apps, credentials, OAuth setup'],
-  },
-  {
-    stage: 'In progress',
-    items: ['Documentation and quick start', 'Dashboard and playground redesign', 'Terms and privacy policy for launch'],
-  },
-  {
-    stage: 'Next',
-    items: ['Private beta, then hardening before launch', 'Voult-hosted OAuth routes in `@voult/express`', '`@voult/react` and `voult doctor`'],
-  },
-  {
-    stage: 'Later',
-    items: ['`@voult/next` for Next.js', '`create-voult-app`', 'API version headers and deploy guides'],
-  },
-];
-
-module.exports = { quickstart, install, routes, inHouse, loginFlow, capabilities, roadmap, highlight };
+module.exports = { quickstart, install, routes, inHouse, loginFlow, capabilities, highlight };
 
 if (require.main === module) {
   const assert = require('assert');

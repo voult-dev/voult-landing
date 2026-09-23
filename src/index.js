@@ -59,7 +59,8 @@ features.forEach((f) => {
 });
 
 app.use('/features', featureRoutes);
-app.use('/api', waitlistRoutes);
+// Closed until LAUNCH_DATE is set; requests fall through to the 404 handler.
+if (app.locals.site.waitlistOpen) app.use('/api', waitlistRoutes);
 app.use('/', legalRoutes);
 
 // Pages
