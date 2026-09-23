@@ -12,13 +12,13 @@ const ARROW = include('../partials/icon', { name: 'arrow', size: 16 });
   <section class="hero">
     <div class="container">
       <a class="release" href="#roadmap">
-        <span class="release-tag mono">Pre-release</span>
+        <span class="release-tag">Pre-release</span>
         <span>In active development · <%= site.launchLabel ? `Launching ${site.launchLabel}` : 'Launch date to be announced' %></span>
         <%- include('../partials/icon', { name: 'arrow', size: 14 }) %>
       </a>
 
       <div class="hero-head">
-        <h1>Authentication infrastructure you don’t have to build.</h1>
+        <h1>Authentication<br class="br-sm"> you mount,<br> <span class="h1-quiet">not maintain.</span></h1>
         <div class="hero-side">
           <p class="lede">
             Voult is a hosted auth API for Node.js. Sign-up, login, sessions, OAuth, MFA and passkeys
@@ -56,13 +56,13 @@ const ARROW = include('../partials/icon', { name: 'arrow', size: 16 });
 
         <div class="compare reveal">
           <div class="compare-col">
-            <p class="compare-title"><span>Built in-house</span><span class="mono muted"><%= inHouse.length %> modules to write, test and patch</span></p>
+            <p class="compare-title"><span>Built in-house</span><span class="muted"><%= inHouse.length %> modules to write, test and patch</span></p>
             <ul class="tree mono">
               <% inHouse.forEach((f) => { %><li><%= f %></li><% }) %>
             </ul>
           </div>
           <div class="compare-col compare-voult">
-            <p class="compare-title"><span>With Voult</span><span class="mono muted">1 router</span></p>
+            <p class="compare-title"><span>With Voult</span><span class="muted">1 router</span></p>
             <pre class="compare-code"><code><span class="tk-f">app.use</span>(<span class="tk-s">'/api/auth'</span>,
   <span class="tk-f">createVoultRouter</span>());</code></pre>
             <p class="compare-note">The same flows, served by Voult. Security fixes ship in the API, not in your codebase.</p>
@@ -98,7 +98,7 @@ const ARROW = include('../partials/icon', { name: 'arrow', size: 16 });
                const dir = s.at !== undefined ? 'self' : (s.to > s.from ? 'right' : 'left'); %>
             <li class="seq-step seq-<%= dir %>" style="--a: <%= a %>; --b: <%= b %>">
               <span class="seq-n mono"><%= i + 1 %></span>
-              <span class="seq-route mono"><%= s.at !== undefined ? lanes[s.at] : `${lanes[s.from]} → ${lanes[s.to]}` %></span>
+              <span class="seq-route"><%= s.at !== undefined ? lanes[s.at] : `${lanes[s.from]} → ${lanes[s.to]}` %></span>
               <span class="seq-label"><%= s.label %></span>
               <% if (s.note) { %><span class="seq-note"><%= s.note %></span><% } %>
             </li>
@@ -114,7 +114,7 @@ const ARROW = include('../partials/icon', { name: 'arrow', size: 16 });
       <p class="label"><span>03</span>What’s included</p>
       <div class="section-head reveal">
         <h2>What Voult handles today, and what’s still coming.</h2>
-        <p class="legend mono">
+        <p class="legend">
           <span><i class="st st-available"></i>Available</span>
           <span><i class="st st-in-progress"></i>In progress</span>
           <span><i class="st st-planned"></i>Planned</span>
@@ -133,14 +133,14 @@ const ARROW = include('../partials/icon', { name: 'arrow', size: 16 });
                 <li class="cap-item is-<%= k %>">
                   <i class="st st-<%= k %>" aria-hidden="true"></i>
                   <div><strong><%- md(name) %></strong><span><%- md(detail) %></span></div>
-                  <% if (status !== 'Available') { %><span class="cap-status mono"><%= status %></span><% } else { %><span class="sr-only">Available</span><% } %>
+                  <% if (status !== 'Available') { %><span class="cap-status"><%= status %></span><% } else { %><span class="sr-only">Available</span><% } %>
                 </li>
               <% }) %>
             </ul>
 
             <% if (g.id === 'sessions') { %>
               <figure class="rotation">
-                <figcaption class="mono">Refresh-token rotation</figcaption>
+                <figcaption>Refresh-token rotation</figcaption>
                 <div class="rotation-row">
                   <span class="tok">rt_A</span><span class="rot-arrow" aria-hidden="true"></span><span class="tok">rt_B</span><span class="rot-arrow" aria-hidden="true"></span><span class="tok tok-live">rt_C</span>
                   <span class="rot-note">each refresh returns a new token and retires the old one</span>
@@ -218,7 +218,7 @@ const ARROW = include('../partials/icon', { name: 'arrow', size: 16 });
       <ol class="roadmap reveal">
         <% roadmap.forEach((r) => { %>
           <li class="road-<%= r.stage.toLowerCase().replace(' ', '-') %>">
-            <p class="road-stage mono"><i aria-hidden="true"></i><%= r.stage %></p>
+            <p class="road-stage"><i aria-hidden="true"></i><%= r.stage %></p>
             <ul><% r.items.forEach((it) => { %><li><%- md(it) %></li><% }) %></ul>
           </li>
         <% }) %>

@@ -13,7 +13,7 @@
   </div>
   <% tabs.forEach((t, i) => { %>
     <div class="code-panel" role="tabpanel" id="<%= id %>-panel-<%= i %>" aria-labelledby="<%= id %>-tab-<%= i %>" <%= i === 0 ? '' : 'hidden' %>>
-      <span class="code-lang"><%= t.lang === 'bash' ? 'shell' : 'javascript' %></span>
+      <span class="code-lang"><%= t.lang === 'bash' ? 'Shell' : 'JavaScript' %></span>
       <pre tabindex="0"><code><%- t.html %></code></pre>
     </div>
   <% }) %>

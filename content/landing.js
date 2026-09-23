@@ -147,14 +147,14 @@ const capabilities = [
     title: 'Developer tooling',
     body: 'Published packages today; the rest is on the road to launch.',
     items: [
-      ['@voult/sdk', 'JavaScript client for Node and the browser', A],
-      ['@voult/express', 'mountable auth router, cookie or bearer sessions', A],
-      ['@voult/cli', '`voult init` writes .env and a session secret', A],
+      ['`@voult/sdk`', 'JavaScript client for Node and the browser', A],
+      ['`@voult/express`', 'mountable auth router, cookie or bearer sessions', A],
+      ['`@voult/cli`', '`voult init` writes .env and a session secret', A],
       ['Developer dashboard', 'apps, credentials, secret rotation, OAuth config', A],
       ['Documentation', 'quick start and API reference', W],
       ['Playground', 'try every flow against a real app', W],
-      ['@voult/react', 'hooks and pre-built sign-in components', P],
-      ['voult doctor', 'checks your integration end to end', P],
+      ['`@voult/react`', 'hooks and pre-built sign-in components', P],
+      ['`voult doctor`', 'checks your integration end to end', P],
     ],
   },
 ];
@@ -163,7 +163,7 @@ const capabilities = [
 const roadmap = [
   {
     stage: 'Shipped',
-    items: ['Core auth API: passwords, OAuth, magic links, MFA, passkeys', '@voult/sdk, @voult/express and @voult/cli on npm', 'Developer dashboard: apps, credentials, OAuth setup'],
+    items: ['Core auth API: passwords, OAuth, magic links, MFA, passkeys', '`@voult/sdk`, `@voult/express` and `@voult/cli` on npm', 'Developer dashboard: apps, credentials, OAuth setup'],
   },
   {
     stage: 'In progress',
@@ -171,11 +171,11 @@ const roadmap = [
   },
   {
     stage: 'Next',
-    items: ['Private beta, then hardening before launch', 'Voult-hosted OAuth routes in @voult/express', '@voult/react and `voult doctor`'],
+    items: ['Private beta, then hardening before launch', 'Voult-hosted OAuth routes in `@voult/express`', '`@voult/react` and `voult doctor`'],
   },
   {
     stage: 'Later',
-    items: ['@voult/next for Next.js', 'create-voult-app', 'API version headers and deploy guides'],
+    items: ['`@voult/next` for Next.js', '`create-voult-app`', 'API version headers and deploy guides'],
   },
 ];
 

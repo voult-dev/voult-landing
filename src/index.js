@@ -39,6 +39,8 @@ app.locals.site.waitlistOpen = Boolean(app.locals.site.launchLabel);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+// Font files never change under the same name, so let browsers keep them.
+app.use('/fonts', express.static(path.join(__dirname, '..', 'public', 'fonts'), { maxAge: '1y', immutable: true }));
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
 const featureRoutes = express.Router();
