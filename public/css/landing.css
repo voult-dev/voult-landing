@@ -864,19 +864,7 @@ h1, h2, h3, h4 { color: var(--text); font-weight: var(--w-semibold); }
 .cta-links a { display: inline-flex; align-items: center; gap: 4px; color: var(--text-3); }
 .cta-links a:hover { color: var(--text); }
 
-.waitlist { display: flex; flex-wrap: wrap; gap: 8px; }
-.waitlist input {
-  flex: 1 1 220px; min-width: 0; height: 42px; padding: 0 14px;
-  border: 1px solid var(--border-strong); border-radius: var(--radius);
-  background: var(--surface); color: var(--text); font: inherit; font-size: var(--t-ui);
-  transition: border-color 0.15s, box-shadow 0.15s;
-}
-.waitlist input::placeholder { color: var(--text-3); }
-.waitlist input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-bg); }
-.waitlist-msg { flex-basis: 100%; min-height: 1.4em; font-size: var(--t-small); color: var(--text-2); }
-.waitlist-msg.success { color: var(--ok); }
-.waitlist-msg.error { color: var(--bad); }
-@media (max-width: 560px) { .waitlist .btn, .cta-actions .btn { flex: 1 1 100%; } }
+@media (max-width: 560px) { .cta-actions .btn { flex: 1 1 100%; } }
 
 /* =============================================================
    Footer

@@ -25,11 +25,7 @@ const ARROW = include('../partials/icon', { name: 'arrow', size: 16 });
             run on Voult. Your Express app mounts one router and gets back to its own features.
           </p>
           <div class="hero-actions">
-            <% if (site.waitlistOpen) { %>
-              <a href="#start" class="btn btn-primary">Get early access <%- ARROW %></a>
-            <% } else { %>
-              <a href="#quickstart" class="btn btn-primary">Get started <%- ARROW %></a>
-            <% } %>
+            <a href="#quickstart" class="btn btn-primary">Get started <%- ARROW %></a>
             <a href="#how" class="btn btn-secondary">How it works</a>
           </div>
         </div>
@@ -212,9 +208,9 @@ const ARROW = include('../partials/icon', { name: 'arrow', size: 16 });
           <a href="/contact-us" class="text-link">Contact us <%- include('../partials/icon', { name: 'arrow', size: 14 }) %></a>
         </div>
         <dl class="pricing-table">
-          <div><dt>Early access</dt><dd><%= site.waitlistOpen ? 'Open now through the waitlist' : 'Not open yet' %></dd></div>
+          <div><dt>Availability</dt><dd>Not open for sign-ups yet</dd></div>
           <div><dt>Included</dt><dd>The full auth API, the three npm packages, the dashboard and audit log</dd></div>
-          <div><dt>Plans</dt><dd>Published before public launch, to early-access members first</dd></div>
+          <div><dt>Plans</dt><dd>Published before public launch</dd></div>
         </dl>
       </div>
     </div>
@@ -225,21 +221,13 @@ const ARROW = include('../partials/icon', { name: 'arrow', size: 16 });
     <div class="container cta-inner reveal">
       <div class="cta-copy">
         <h2>Stop maintaining login code.</h2>
-        <% if (site.waitlistOpen) { %>
-          <p>Join the waitlist for access before launch. We’ll send one confirmation email now and reach out when access opens.</p>
-        <% } else { %>
-          <p>Voult is in active development. The packages are on npm, and we’re happy to talk.</p>
-        <% } %>
+        <p>Voult is in active development. The packages are on npm, and we’re happy to talk.</p>
       </div>
       <div class="cta-form">
-        <% if (site.waitlistOpen) { %>
-          <%- include('../partials/waitlist-form') %>
-        <% } else { %>
-          <div class="cta-actions">
-            <a href="/contact-us" class="btn btn-primary">Contact us <%- ARROW %></a>
-            <a href="<%= site.githubUrl %>" class="btn btn-secondary" target="_blank" rel="noopener"><%- include('../partials/icon', { name: 'github', size: 15 }) %>GitHub</a>
-          </div>
-        <% } %>
+        <div class="cta-actions">
+          <a href="/contact-us" class="btn btn-primary">Contact us <%- ARROW %></a>
+          <a href="<%= site.githubUrl %>" class="btn btn-secondary" target="_blank" rel="noopener"><%- include('../partials/icon', { name: 'github', size: 15 }) %>GitHub</a>
+        </div>
         <p class="cta-links">
           <% ['@voult/sdk', '@voult/express', '@voult/cli'].forEach((p) => { %>
             <a href="<%= site.npmUrl(p) %>" target="_blank" rel="noopener" class="mono"><%= p %> <%- include('../partials/icon', { name: 'external', size: 12 }) %></a>

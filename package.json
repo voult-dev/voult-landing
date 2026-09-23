@@ -1,7 +1,7 @@
 {
   "name": "voult-landing",
   "version": "1.0.0",
-  "description": "Pre-launch waitlist landing page for voult.dev",
+  "description": "Landing page for voult.dev",
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",

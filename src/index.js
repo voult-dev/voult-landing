@@ -6,7 +6,6 @@ const helmet = require('helmet');
 const ejsMate = require('ejs-mate');
 
 const { connectDB } = require('../config/database');
-const waitlistRoutes = require('../routes/waitlist');
 const legalRoutes = require('../routes/legal');
 const landing = require('../content/landing');
 
@@ -23,19 +22,13 @@ app.use(
     contentSecurityPolicy: false, // keep simple for CDN bootstrap/fonts
   })
 );
-const launchDate = new Date(process.env.LAUNCH_DATE);
 app.locals.site = {
   // Docs and playground links stay hidden ("Soon") until their URLs are set.
   docsUrl: process.env.DOCS_URL || null,
   playgroundUrl: process.env.PLAYGROUND_URL || null,
   githubUrl: 'https://github.com/voult-dev',
   npmUrl: (pkg) => `https://www.npmjs.com/package/${pkg}`,
-  launchLabel: Number.isNaN(launchDate.getTime())
-    ? null
-    : launchDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' }),
 };
-// The waitlist opens the moment a launch date is set.
-app.locals.site.waitlistOpen = Boolean(app.locals.site.launchLabel);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -59,8 +52,8 @@ features.forEach((f) => {
 });
 
 app.use('/features', featureRoutes);
-// Closed until LAUNCH_DATE is set; requests fall through to the 404 handler.
-if (app.locals.site.waitlistOpen) app.use('/api', waitlistRoutes);
+// Waitlist is off for now. To bring it back: mount routes/waitlist.js at /api
+// and re-add the form (see git history for views/partials/waitlist-form.ejs).
 app.use('/', legalRoutes);
 
 // Pages

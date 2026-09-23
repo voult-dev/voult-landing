@@ -106,45 +106,4 @@
       io.observe(el);
     });
   }
-
-  // Waitlist form → POST /api/waitlist.
-  const form = document.getElementById('waitlist-form');
-  if (form) {
-    const input = document.getElementById('waitlist-email');
-    const submit = document.getElementById('waitlist-submit');
-    const msg = document.getElementById('waitlist-msg');
-    const setMsg = (text, type) => {
-      msg.textContent = text;
-      msg.className = `waitlist-msg ${type || ''}`;
-    };
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const email = input.value.trim();
-      if (!/^\S+@\S+\.\S+$/.test(email)) {
-        setMsg('Please enter a valid email address.', 'error');
-        input.focus();
-        return;
-      }
-      submit.disabled = true;
-      const label = submit.textContent;
-      submit.textContent = 'Joining…';
-      setMsg('');
-      try {
-        const res = await fetch('/api/waitlist', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email }),
-        });
-        const data = await res.json().catch(() => ({}));
-        if (!res.ok || !data.ok) setMsg(data.error || 'Something went wrong. Try again shortly.', 'error');
-        else { setMsg(data.message || "You're on the list.", 'success'); input.value = ''; }
-      } catch (err) {
-        setMsg('Network error. Please try again.', 'error');
-      } finally {
-        submit.disabled = false;
-        submit.textContent = label;
-      }
-    });
-  }
 })();
