@@ -8,6 +8,7 @@ const ejsMate = require('ejs-mate');
 const { connectDB } = require('../config/database');
 const waitlistRoutes = require('../routes/waitlist');
 const legalRoutes = require('../routes/legal');
+const landing = require('../content/landing');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -22,6 +23,18 @@ app.use(
     contentSecurityPolicy: false, // keep simple for CDN bootstrap/fonts
   })
 );
+const launchDate = new Date(process.env.LAUNCH_DATE);
+app.locals.site = {
+  // Pre-launch the API reference is only served from staging; override at launch.
+  docsUrl: process.env.DOCS_URL || 'https://staging.voult.dev/docs',
+  playgroundUrl: process.env.PLAYGROUND_URL || null,
+  githubUrl: 'https://github.com/voult-dev',
+  npmUrl: (pkg) => `https://www.npmjs.com/package/${pkg}`,
+  launchLabel: Number.isNaN(launchDate.getTime())
+    ? null
+    : launchDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' }),
+};
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '..', 'public')));
@@ -48,7 +61,8 @@ app.use('/', legalRoutes);
 // Pages
 app.get('/', (req, res) => {
   res.render('home/landing', {
-    title: 'voult.dev - Authentication, done properly.',
+    title: 'Voult — Authentication infrastructure for Node.js developers',
+    ...landing,
   });
 });
 
@@ -75,7 +89,12 @@ app.use((req, res) => {
   } catch (err) {
     console.warn('[db] continuing without database:', err.message);
   }
-  app.listen(PORT, () => {
+  // Express 5 passes listen errors (e.g. EADDRINUSE) here instead of throwing.
+  app.listen(PORT, (err) => {
+    if (err) {
+      console.error(`[server] cannot listen on port ${PORT}: ${err.code || err.message}`);
+      process.exit(1);
+    }
     console.log(`[server] voult-landing running → http://localhost:${PORT}`);
   });
 })();

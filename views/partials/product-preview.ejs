@@ -1,0 +1,116 @@
+<%# ProductPreview: variant 'app' (hero: app settings) or 'console' (showcase: audit log / sessions / security). Sample data only. %>
+<div class="window <%= variant === 'console' ? 'window-lg' : '' %>" role="<%= variant === 'app' ? 'img' : 'region' %>" aria-label="<%= variant === 'app' ? 'Preview of the Voult dashboard showing an app’s API credentials, OAuth providers and callback URLs, with sample data' : 'Preview of the Voult developer console showing an audit log, active sessions and security settings, with sample data' %>">
+  <div class="window-bar">
+    <span class="window-crumbs mono">voult <span>/</span> apps <span>/</span> <b>acme-web</b><% if (variant === 'console') { %> <span>/</span> <b>security</b><% } %></span>
+    <span class="badge badge-preview">Preview · sample data</span>
+  </div>
+
+  <div class="window-body">
+    <aside class="window-side" aria-hidden="true">
+      <% const side = variant === 'app'
+        ? [['dashboard', 'Overview'], ['key', 'Credentials', true], ['globe', 'OAuth'], ['scroll', 'Audit log'], ['settings', 'Settings']]
+        : [['dashboard', 'Overview'], ['key', 'Credentials'], ['globe', 'OAuth'], ['scroll', 'Audit log', true], ['settings', 'Settings']]; %>
+      <% side.forEach(([icon, label, active]) => { %>
+        <span class="side-item <%= active ? 'is-active' : '' %>"><%- include('icon', { name: icon, size: 15 }) %><%= label %></span>
+      <% }) %>
+    </aside>
+
+    <div class="window-main" <%= variant === 'app' ? 'inert' : '' %>>
+      <% if (variant === 'app') { %>
+        <div class="pv-head">
+          <div>
+            <p class="pv-title">acme-web</p>
+            <p class="pv-sub">Created Sep 2, 2026 · Cookie session strategy</p>
+          </div>
+          <span class="pill pill-ok"><span class="status-dot"></span>Active</span>
+        </div>
+
+        <section class="pv-card">
+          <h4>API credentials</h4>
+          <div class="pv-row"><span>Client ID</span><code>app_7f3c9e21b4d8a6</code></div>
+          <div class="pv-row"><span>Client secret</span><code>••••••••••••••••</code><span class="pv-btn">Rotate secret</span></div>
+        </section>
+
+        <section class="pv-card">
+          <h4>OAuth providers</h4>
+          <div class="pv-providers">
+            <% [['Google', true], ['GitHub', true], ['Microsoft', true], ['Apple', false], ['Facebook', false], ['LinkedIn', false]].forEach(([p, on]) => { %>
+              <div class="pv-provider"><span><%= p %></span><span class="switch <%= on ? 'is-on' : '' %>"></span></div>
+            <% }) %>
+          </div>
+        </section>
+
+        <section class="pv-card pv-hide-sm">
+          <h4>Allowed callback URLs</h4>
+          <div class="pv-row"><code>https://acme.example/auth/callback</code></div>
+          <div class="pv-row"><code>http://localhost:5173/magic-callback</code></div>
+        </section>
+      <% } else { %>
+        <div class="pv-tabs" role="tablist" aria-label="Console views">
+          <button type="button" role="tab" id="pv-tab-0" aria-controls="pv-panel-0" aria-selected="true">Audit log</button>
+          <button type="button" role="tab" id="pv-tab-1" aria-controls="pv-panel-1" aria-selected="false" tabindex="-1">Sessions</button>
+          <button type="button" role="tab" id="pv-tab-2" aria-controls="pv-panel-2" aria-selected="false" tabindex="-1">Policies</button>
+        </div>
+
+        <div role="tabpanel" id="pv-panel-0" aria-labelledby="pv-tab-0" class="pv-table-wrap">
+          <table class="pv-table">
+            <thead><tr><th>Time</th><th>Event</th><th>User</th><th class="pv-hide-sm">IP</th><th>Risk</th></tr></thead>
+            <tbody>
+              <% [
+                ['14:22:08', 'LOGIN_SUCCESS', 'ada@example.com', '203.0.113.24', 'low'],
+                ['14:21:40', 'LOGIN_FAILURE', 'ada@example.com', '203.0.113.24', 'medium'],
+                ['14:18:02', 'TOKEN_REVOKED', 'lin@example.com', '198.51.100.7', 'critical', 'Refresh token reuse detected — all sessions revoked'],
+                ['14:11:55', 'SESSION_CREATED', 'sam@example.com', '203.0.113.61', 'low'],
+                ['14:09:13', 'PASSWORD_RESET', 'kofi@example.com', '192.0.2.14', 'high'],
+                ['14:02:47', 'LOGIN_ATTEMPT_THROTTLED', 'ada@example.com', '198.51.100.90', 'medium'],
+              ].forEach(([t, ev, user, ip, risk, note]) => { %>
+                <tr>
+                  <td class="mono muted"><%= t %></td>
+                  <td><code><%= ev %></code><% if (note) { %><span class="pv-note"><%= note %></span><% } %></td>
+                  <td><%= user %></td>
+                  <td class="mono muted pv-hide-sm"><%= ip %></td>
+                  <td><span class="risk risk-<%= risk %>"><%= risk %></span></td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+
+        <div role="tabpanel" id="pv-panel-1" aria-labelledby="pv-tab-1" class="pv-table-wrap" hidden>
+          <table class="pv-table">
+            <thead><tr><th>User</th><th>Device</th><th class="pv-hide-sm">IP</th><th>Last used</th><th></th></tr></thead>
+            <tbody>
+              <% [
+                ['ada@example.com', 'Chrome · macOS', '203.0.113.24', '2 min ago'],
+                ['sam@example.com', 'Safari · iOS', '203.0.113.61', '12 min ago'],
+                ['kofi@example.com', 'Firefox · Linux', '192.0.2.14', '1 h ago'],
+                ['mei@example.com', 'Edge · Windows', '198.51.100.33', '3 h ago'],
+              ].forEach(([user, ua, ip, last]) => { %>
+                <tr>
+                  <td><%= user %></td>
+                  <td class="muted"><%= ua %></td>
+                  <td class="mono muted pv-hide-sm"><%= ip %></td>
+                  <td class="muted"><%= last %></td>
+                  <td class="pv-right"><span class="pv-btn pv-btn-danger">Revoke</span></td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+
+        <div role="tabpanel" id="pv-panel-2" aria-labelledby="pv-tab-2" class="pv-policies" hidden>
+          <% [
+            ['Account lockout', 'After 5 failed password attempts'],
+            ['Multi-factor auth', 'TOTP with backup codes · optional per user'],
+            ['Passkeys', 'WebAuthn sign-in enabled'],
+            ['IP allowlist', '203.0.113.0/24, 198.51.100.7'],
+            ['Magic-link redirects', 'Allowlisted callback URLs only'],
+            ['Access token lifetime', '15 minutes · refresh tokens rotate on use'],
+          ].forEach(([k, v]) => { %>
+            <div class="pv-policy"><span><%= k %></span><span class="muted"><%= v %></span></div>
+          <% }) %>
+        </div>
+      <% } %>
+    </div>
+  </div>
+</div>

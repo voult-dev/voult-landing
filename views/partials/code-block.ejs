@@ -1,0 +1,20 @@
+<%# CodeBlock: tabs = [{ label, lang, html }], html is pre-highlighted (content/landing.js) %>
+<div class="code" data-code>
+  <div class="code-head">
+    <div class="code-tabs" role="tablist" aria-label="<%= label %>">
+      <% tabs.forEach((t, i) => { %>
+        <button type="button" role="tab" class="code-tab" id="<%= id %>-tab-<%= i %>" aria-controls="<%= id %>-panel-<%= i %>" aria-selected="<%= i === 0 %>" tabindex="<%= i === 0 ? 0 : -1 %>"><%= t.label %></button>
+      <% }) %>
+    </div>
+    <button type="button" class="icon-btn code-copy" data-copy aria-label="Copy code">
+      <span class="copy-idle"><%- include('icon', { name: 'copy', size: 15 }) %></span>
+      <span class="copy-done"><%- include('icon', { name: 'check', size: 15 }) %></span>
+    </button>
+  </div>
+  <% tabs.forEach((t, i) => { %>
+    <div class="code-panel" role="tabpanel" id="<%= id %>-panel-<%= i %>" aria-labelledby="<%= id %>-tab-<%= i %>" <%= i === 0 ? '' : 'hidden' %>>
+      <span class="code-lang"><%= t.lang === 'bash' ? 'shell' : 'javascript' %></span>
+      <pre tabindex="0"><code><%- t.html %></code></pre>
+    </div>
+  <% }) %>
+</div>

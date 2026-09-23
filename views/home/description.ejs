@@ -2,12 +2,12 @@
 
 <%- include('../partials/nav') %>
 
-<main>
-  <section class="section container" style="padding-top: 7.5rem;">
-    <h1 class="section-title" style="text-align: left;">Frequently Asked Questions</h1>
-    <p class="section-sub" style="text-align: left; margin-left: 0;">Everything you need to know about voult.dev.</p>
+<main id="main">
+  <section class="page container">
+    <h1 class="section-title">Frequently Asked Questions</h1>
+    <p class="section-sub">Everything you need to know about voult.dev.</p>
 
-    <div class="faq-list" style="margin-left: 0;">
+    <div class="faq-list">
 
       <details class="faq-item">
         <summary class="faq-question">What is voult.dev?</summary>
@@ -33,7 +33,7 @@
       <details class="faq-item">
         <summary class="faq-question">What frameworks and languages does voult.dev support?</summary>
         <div class="faq-answer">
-          <p>Our MVP supports Express.js and Node.js out of the box, with SDKs for JavaScript/TypeScript. We also provide pre-built UI components for React, Vue, Svelte, and plain HTML that you can drop into any project. More framework support is coming after launch.</p>
+          <p>Voult supports Node.js and Express today: <code>@voult/express</code> gives you a mountable auth router, <code>@voult/sdk</code> is the JavaScript client, and <code>@voult/cli</code> scaffolds your configuration. Any frontend (React, Vite, plain HTML) can call the router over fetch. React components and a Next.js integration are planned.</p>
         </div>
       </details>
 
@@ -47,7 +47,7 @@
       <details class="faq-item">
         <summary class="faq-question">What's included in the MVP?</summary>
         <div class="faq-answer">
-          <p>The MVP includes: secure email/password authentication, OAuth provider support, magic link authentication, JWT with refresh token rotation, rate limiting, CSRF protection, a developer dashboard with auth metrics, and pre-built login/register UI components.</p>
+          <p>The MVP includes email/password and username sign-in, OAuth (Google, GitHub, Microsoft, Apple, Facebook, LinkedIn), magic links, email verification and password reset, MFA with TOTP and backup codes, passkeys, JWT access tokens with rotating refresh tokens, rate limiting, CSRF protection, an audit log, and a developer dashboard for apps, credentials and OAuth configuration.</p>
         </div>
       </details>
 
@@ -61,7 +61,7 @@
       <details class="faq-item">
         <summary class="faq-question">Is voult.dev secure?</summary>
         <div class="faq-answer">
-          <p>Security is our top priority. We use bcrypt for password hashing, JWT with refresh token rotation, CSRF protection, rate limiting, helmet security headers, and encryption in transit. We follow OWASP guidelines and conduct regular security reviews. All authentication events are logged for audit purposes.</p>
+          <p>Security controls are on by default: bcrypt password hashing, short-lived access tokens with rotating refresh tokens and reuse detection, account lockout after repeated failed logins, rate limiting, CSRF protection, Helmet security headers, IP allowlists, and a risk-scored audit log of authentication events.</p>
         </div>
       </details>
 
@@ -91,7 +91,7 @@
     <div class="about-cta-block">
       <h2>Ready to skip the auth grind?</h2>
       <p>Explore the MVP features and see what's coming.</p>
-      <a href="/#features" class="btn-primary">View features</a>
+      <a href="/#features" class="btn btn-primary">View features</a>
     </div>
   </section>
 </main>

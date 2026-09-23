@@ -2,93 +2,268 @@
 
 <%- include('../partials/nav') %>
 
-<main>
-  <section class="hero container">
-    <p class="hero-status">Pre-launch · MVP coming soon</p>
+<main id="main">
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <a href="#pricing" class="status-pill">
+          <span class="status-dot" aria-hidden="true"></span>
+          In development · <%= site.launchLabel ? `Launching ${site.launchLabel}` : 'Launching soon' %>
+          <%- include('../partials/icon', { name: 'arrow', size: 14 }) %>
+        </a>
 
-    <h1>
-      Authentication,<br />
-      <span class="grad">done properly.</span>
-    </h1>
+        <h1>Authentication you mount, <span class="text-muted-strong">not maintain.</span></h1>
 
-    <p class="subtitle">
-      Secure APIs, lightweight SDKs, OAuth, magic links, and UI kits —
-      so you skip the auth grind and ship the product.
-    </p>
+        <p class="lede">
+          Voult is a hosted authentication API for Node.js. Passwords, OAuth, magic links, MFA,
+          passkeys and sessions sit behind one Express router — so you ship your product, not an auth system.
+        </p>
 
-    <div class="hero-actions">
-      <a href="#features" class="btn-primary">See what's included</a>
-      <a href="/about" class="btn-ghost">Learn more</a>
-    </div>
+        <div class="hero-actions">
+          <a href="#waitlist" class="btn btn-primary btn-lg">Get early access <%- include('../partials/icon', { name: 'arrow', size: 16 }) %></a>
+          <a href="<%= site.docsUrl %>" class="btn btn-secondary btn-lg" target="_blank" rel="noopener">Explore the docs</a>
+        </div>
 
-    <div class="snippet fade-up" aria-hidden="true">
-      <div class="snippet-bar">
-        <span class="snippet-dot"></span>
-        <span class="snippet-dot"></span>
-        <span class="snippet-dot"></span>
-        <code>POST /api/auth/register</code>
+        <div class="install" data-code>
+          <span class="install-prompt" aria-hidden="true">$</span>
+          <pre class="code-panel"><code>npm i @voult/express @voult/sdk</code></pre>
+          <button type="button" class="icon-btn code-copy" data-copy aria-label="Copy install command">
+            <span class="copy-idle"><%- include('../partials/icon', { name: 'copy', size: 15 }) %></span>
+            <span class="copy-done"><%- include('../partials/icon', { name: 'check', size: 15 }) %></span>
+          </button>
+        </div>
       </div>
-<pre><code><span class="t-k">const</span> res = <span class="t-k">await</span> voult.auth.<span class="t-f">register</span>({
-  email: <span class="t-s">"dev@example.com"</span>,
-  password: <span class="t-s">"StrongPassword123!"</span>,
-});
 
-<span class="t-c">// → { user, accessToken, refreshToken }</span></code></pre>
+      <div class="hero-visual">
+        <%- include('../partials/product-preview', { variant: 'app' }) %>
+      </div>
     </div>
   </section>
 
-  <section id="features" class="section container">
-    <h2 class="section-title fade-up">What's in the MVP</h2>
-    <p class="section-sub fade-up">Everything below is included in the MVP.</p>
+  <!-- Product status -->
+  <section class="status-strip" aria-label="Product status">
+    <div class="container status-grid">
+      <div>
+        <p class="eyebrow">Available now</p>
+        <p><code>@voult/sdk</code>, <code>@voult/express</code> and <code>@voult/cli</code> are published on npm.</p>
+      </div>
+      <div>
+        <p class="eyebrow">In progress</p>
+        <p>Dashboard polish, the public playground, and <code>@voult/react</code> components.</p>
+      </div>
+      <div>
+        <p class="eyebrow">Launch</p>
+        <p><%= site.launchLabel ? `Public launch planned for ${site.launchLabel}.` : 'Public launch date to be announced.' %> Waitlist members get access first.</p>
+      </div>
+    </div>
+  </section>
 
-    <div class="features-grid">
-      <a href="/features/security" class="feature-link fade-up">
-        <article class="feature">
-          <span class="feature-tag">core</span>
-          <h3>Security-first</h3>
-          <p>Bcrypt password hashing, JWT + refresh rotation, CSRF protection, rate limiting, and helmet headers — wired in by default.</p>
-        </article>
-      </a>
+  <!-- Problem → solution -->
+  <section class="section" id="why">
+    <div class="container split">
+      <div class="reveal">
+        <p class="eyebrow">Why Voult</p>
+        <h2>“Add login” is never one feature.</h2>
+        <p class="section-lede">
+          It turns into a dozen pieces of security-critical infrastructure, each with its own edge cases —
+          and every one of them is yours to maintain.
+        </p>
+        <ul class="chips" aria-label="What authentication actually involves">
+          <% problems.forEach((p) => { %><li><%= p %></li><% }) %>
+        </ul>
+      </div>
 
-      <a href="/features/sdk-docs" class="feature-link fade-up">
-        <article class="feature">
-          <span class="feature-tag">sdk</span>
-          <h3>Lightweight SDK &amp; docs</h3>
-          <p>Tiny, typed SDKs with zero runtime bloat. Clear docs, real examples, copy-pasteable snippets — no marketing fluff.</p>
-        </article>
-      </a>
+      <div class="reveal">
+        <p class="eyebrow">How it fits</p>
+        <h3 class="h3">Voult owns the auth surface. You keep your stack.</h3>
+        <ol class="flow">
+          <li class="flow-node">
+            <span class="flow-label mono">Your frontend</span>
+            <p>Calls your own <code>/api/auth</code> routes. Tokens stay in httpOnly cookies.</p>
+          </li>
+          <li class="flow-node flow-node-accent">
+            <span class="flow-label mono">Your server + @voult/express</span>
+            <p>One router. Holds your client secret, manages cookies and refresh.</p>
+          </li>
+          <li class="flow-node">
+            <span class="flow-label mono">Voult API</span>
+            <p>Users, credentials, tokens, OAuth, MFA, passkeys and the audit log.</p>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
 
-      <a href="/features/dx" class="feature-link fade-up">
-        <article class="feature">
-          <span class="feature-tag">dx</span>
-          <h3>Smooth DX, easy integration</h3>
-          <p>Drop voult into an existing Express, Next, or Vite app in minutes. Sensible defaults, escape hatches when you need them.</p>
-        </article>
-      </a>
+  <!-- Features -->
+  <section class="section section-alt" id="features">
+    <div class="container">
+      <header class="section-head reveal">
+        <p class="eyebrow">Features</p>
+        <h2>Everything between “sign up” and “signed in”.</h2>
+        <p class="section-lede">Built into the Voult API today — not a roadmap.</p>
+      </header>
+      <div class="feature-grid">
+        <% features.forEach((f) => { %><%- include('../partials/feature-card', f) %><% }) %>
+      </div>
+    </div>
+  </section>
 
-      <a href="/features/portal" class="feature-link fade-up">
-        <article class="feature">
-          <span class="feature-tag">tooling</span>
-          <h3>Rich developer portal</h3>
-          <p>Interactive dashboard + CLI showing live metrics — sign-up rates, failed logins, token usage, OAuth provider breakdown.</p>
-        </article>
-      </a>
+  <!-- Developer experience -->
+  <section class="section" id="developers">
+    <div class="container dx-grid">
+      <div class="dx-copy reveal">
+        <p class="eyebrow">Developer experience</p>
+        <h2>Authentication shouldn’t require you to become an authentication engineer.</h2>
+        <p class="section-lede">Three steps from an empty Express app to working sign-up, login and sessions.</p>
 
-      <a href="/features/oauth" class="feature-link fade-up">
-        <article class="feature">
-          <span class="feature-tag">auth</span>
-          <h3>OAuth &amp; passwordless</h3>
-          <p>Google, GitHub, and magic links out of the box — same session model as email/password, without extra libraries or glue code.</p>
-        </article>
-      </a>
+        <ol class="steps">
+          <li><span class="step-n mono">01</span><div><strong>Create an app</strong><p>Get a client ID and secret from the Voult dashboard.</p></div></li>
+          <li><span class="step-n mono">02</span><div><strong>Run <code>npx voult init</code></strong><p>Writes <code>.env</code> and <code>.env.example</code>, and generates your session secret.</p></div></li>
+          <li><span class="step-n mono">03</span><div><strong>Mount the router</strong><p>Your app now serves the auth routes below.</p></div></li>
+        </ol>
 
-      <a href="/features/ui-kits" class="feature-link fade-up">
-        <article class="feature">
-          <span class="feature-tag">ui</span>
-          <h3>Pre-built UI kits</h3>
-          <p>Drop-in login &amp; register components tailored to your stack — React, Vue, Svelte, plain HTML. Themed, accessible, yours to fork.</p>
+        <div class="routes" aria-label="Routes provided by createVoultRouter">
+          <% routes.forEach(([m, p]) => { %>
+            <span class="route"><span class="method method-<%= m.toLowerCase() %>"><%= m %></span><code><%= p %></code></span>
+          <% }) %>
+        </div>
+      </div>
+
+      <div class="dx-code reveal">
+        <%- include('../partials/code-block', { id: 'qs', label: 'Quick start files', tabs: quickstart }) %>
+        <p class="caption">Real <code>@voult/express</code> and <code>@voult/sdk</code> APIs, straight from the quick-start guide.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product showcase -->
+  <section class="section section-alt" id="product">
+    <div class="container">
+      <header class="section-head reveal">
+        <p class="eyebrow">The console</p>
+        <h2>See every sign-in, session and security event.</h2>
+        <p class="section-lede">
+          Each app gets its own audit trail, revocable sessions and security policies.
+          This preview uses sample data — some of these dashboard screens are still being built.
+        </p>
+      </header>
+      <div class="reveal">
+        <%- include('../partials/product-preview', { variant: 'console' }) %>
+      </div>
+    </div>
+  </section>
+
+  <!-- Integrations -->
+  <section class="section" id="integrations">
+    <div class="container">
+      <header class="section-head reveal">
+        <p class="eyebrow">Ecosystem</p>
+        <h2>Built for the JavaScript backend you already run.</h2>
+        <p class="section-lede">Node.js and Express first. Frontend packages and more frameworks are next.</p>
+      </header>
+      <ul class="integration-grid">
+        <% integrations.forEach((i) => { %>
+          <li class="card integration reveal">
+            <span class="integration-mark mono" aria-hidden="true"><%= i.mark %></span>
+            <div>
+              <h3><%= i.name %></h3>
+              <p><%= i.detail %></p>
+            </div>
+            <span class="badge <%= i.status === 'Planned' ? '' : 'badge-ok' %>"><%= i.status %></span>
+          </li>
+        <% }) %>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Security -->
+  <section class="section section-alt" id="security">
+    <div class="container security-grid">
+      <div class="reveal">
+        <p class="eyebrow">Security</p>
+        <h2>Secure defaults, not security settings.</h2>
+        <p class="section-lede">
+          Authentication is where attacks start. These controls are on for every app — you don’t opt in.
+        </p>
+
+        <div class="terminal" aria-label="Example: refresh-token reuse detection" role="img">
+          <div class="terminal-bar mono">refresh-token reuse · example</div>
+<pre class="mono"><span class="t-dim"># refresh with token A → rotated to token B</span>
+POST /api/sessions/refresh  <span class="t-ok">200 OK</span>
+<span class="t-dim"># token A replayed</span>
+POST /api/sessions/refresh  <span class="t-bad">401 REFRESH_TOKEN_REUSE_DETECTED</span>
+<span class="t-dim">→</span> every session for this user revoked
+<span class="t-dim">→</span> audit: TOKEN_REVOKED  <span class="t-bad">risk=CRITICAL</span></pre>
+        </div>
+      </div>
+
+      <ul class="security-list">
+        <% security.forEach((s) => { %>
+          <li class="reveal">
+            <span class="feature-icon"><%- include('../partials/icon', { name: s.icon, size: 16 }) %></span>
+            <div><h3><%= s.title %></h3><p><%= s.body %></p></div>
+          </li>
+        <% }) %>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="section" id="pricing">
+    <div class="container">
+      <header class="section-head reveal">
+        <p class="eyebrow">Pricing</p>
+        <h2>Early access first. Pricing before launch.</h2>
+        <p class="section-lede">We’re not publishing plans until they’re final. Here’s where things stand.</p>
+      </header>
+
+      <div class="pricing-grid">
+        <article class="card price-card price-card-featured reveal">
+          <div class="price-top">
+            <h3>Early access</h3>
+            <span class="badge badge-accent">Open waitlist</span>
+          </div>
+          <p class="price-desc">For developers who want to integrate Voult before public launch and shape what ships.</p>
+          <ul class="checklist">
+            <li><%- include('../partials/icon', { name: 'check', size: 16 }) %><span>The full auth API: passwords, OAuth, magic links, MFA, passkeys</span></li>
+            <li><%- include('../partials/icon', { name: 'check', size: 16 }) %><span><code>@voult/sdk</code>, <code>@voult/express</code> and <code>@voult/cli</code></span></li>
+            <li><%- include('../partials/icon', { name: 'check', size: 16 }) %><span>Dashboard, audit log and security controls</span></li>
+            <li><%- include('../partials/icon', { name: 'check', size: 16 }) %><span>Pricing shared with waitlist members first</span></li>
+          </ul>
+          <a href="#waitlist" class="btn btn-primary btn-block">Join the waitlist</a>
         </article>
-      </a>
+
+        <article class="card price-card reveal">
+          <div class="price-top">
+            <h3>Launch plans</h3>
+            <span class="badge">To be announced</span>
+          </div>
+          <p class="price-desc">Plans and limits will be published ahead of the public launch<%= site.launchLabel ? ` in ${site.launchLabel}` : '' %>.</p>
+          <p class="price-desc">Have questions about pricing or volume? Talk to us directly.</p>
+          <a href="/contact-us" class="btn btn-secondary btn-block">Contact us</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="section cta" id="waitlist">
+    <div class="container">
+      <div class="cta-panel reveal">
+        <div class="cta-copy">
+          <h2>Stop rebuilding login. Get early access to Voult.</h2>
+          <p>Join the waitlist for access before launch. We’ll send one confirmation email now and reach out when access opens.</p>
+        </div>
+        <div class="cta-form">
+          <%- include('../partials/waitlist-form') %>
+          <div class="cta-links">
+            <a href="<%= site.docsUrl %>" target="_blank" rel="noopener">API docs <%- include('../partials/icon', { name: 'external', size: 13 }) %></a>
+            <a href="<%= site.npmUrl('@voult/express') %>" target="_blank" rel="noopener">npm <%- include('../partials/icon', { name: 'external', size: 13 }) %></a>
+            <% if (site.playgroundUrl) { %><a href="<%= site.playgroundUrl %>" target="_blank" rel="noopener">Playground <%- include('../partials/icon', { name: 'external', size: 13 }) %></a><% } %>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 </main>
