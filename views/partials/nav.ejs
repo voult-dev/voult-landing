@@ -14,7 +14,11 @@
       <a href="<%= site.githubUrl %>" target="_blank" rel="noopener" class="nav-github">
         <%- include('icon', { name: 'github', size: 16 }) %><span>GitHub</span>
       </a>
-      <a href="/#waitlist" class="btn btn-primary nav-cta-mobile">Get early access</a>
+      <% if (site.waitlistOpen) { %>
+        <a href="/#start" class="btn btn-primary nav-cta-mobile">Get early access</a>
+      <% } else { %>
+        <a href="<%= site.docsUrl %>" target="_blank" rel="noopener" class="btn btn-primary nav-cta-mobile">Read the docs</a>
+      <% } %>
     </nav>
 
     <div class="nav-actions">
@@ -22,7 +26,11 @@
         <span class="theme-icon-light"><%- include('icon', { name: 'moon', size: 16 }) %></span>
         <span class="theme-icon-dark"><%- include('icon', { name: 'sun', size: 16 }) %></span>
       </button>
-      <a href="/#waitlist" class="btn btn-primary btn-sm nav-cta">Get early access</a>
+      <% if (site.waitlistOpen) { %>
+        <a href="/#start" class="btn btn-primary btn-sm nav-cta">Get early access</a>
+      <% } else { %>
+        <a href="<%= site.docsUrl %>" target="_blank" rel="noopener" class="btn btn-primary btn-sm nav-cta">Read the docs</a>
+      <% } %>
       <button type="button" class="icon-btn nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
         <span class="nav-toggle-open"><%- include('icon', { name: 'menu', size: 18 }) %></span>
         <span class="nav-toggle-close"><%- include('icon', { name: 'x', size: 18 }) %></span>

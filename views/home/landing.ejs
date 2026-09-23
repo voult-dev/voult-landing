@@ -7,9 +7,9 @@
   <section class="hero">
     <div class="container hero-grid">
       <div class="hero-copy">
-        <a href="#pricing" class="status-pill">
+        <a href="#status" class="status-pill">
           <span class="status-dot" aria-hidden="true"></span>
-          In development · <%= site.launchLabel ? `Launching ${site.launchLabel}` : 'Launching soon' %>
+          In active development · <%= site.launchLabel ? `Launching ${site.launchLabel}` : 'Launch date to be announced' %>
           <%- include('../partials/icon', { name: 'arrow', size: 14 }) %>
         </a>
 
@@ -21,8 +21,13 @@
         </p>
 
         <div class="hero-actions">
-          <a href="#waitlist" class="btn btn-primary btn-lg">Get early access <%- include('../partials/icon', { name: 'arrow', size: 16 }) %></a>
-          <a href="<%= site.docsUrl %>" class="btn btn-secondary btn-lg" target="_blank" rel="noopener">Explore the docs</a>
+          <% if (site.waitlistOpen) { %>
+            <a href="#start" class="btn btn-primary btn-lg">Get early access <%- include('../partials/icon', { name: 'arrow', size: 16 }) %></a>
+            <a href="<%= site.docsUrl %>" class="btn btn-secondary btn-lg" target="_blank" rel="noopener">Explore the docs</a>
+          <% } else { %>
+            <a href="<%= site.docsUrl %>" class="btn btn-primary btn-lg" target="_blank" rel="noopener">Explore the docs <%- include('../partials/icon', { name: 'arrow', size: 16 }) %></a>
+            <a href="#developers" class="btn btn-secondary btn-lg">See how it works</a>
+          <% } %>
         </div>
 
         <div class="install" data-code>
@@ -42,7 +47,7 @@
   </section>
 
   <!-- Product status -->
-  <section class="status-strip" aria-label="Product status">
+  <section class="status-strip" id="status" aria-label="Product status">
     <div class="container status-grid">
       <div>
         <p class="eyebrow">Available now</p>
@@ -54,7 +59,11 @@
       </div>
       <div>
         <p class="eyebrow">Launch</p>
-        <p><%= site.launchLabel ? `Public launch planned for ${site.launchLabel}.` : 'Public launch date to be announced.' %> Waitlist members get access first.</p>
+        <% if (site.waitlistOpen) { %>
+          <p>Public launch planned for <%= site.launchLabel %>. The waitlist is open — members get access first.</p>
+        <% } else { %>
+          <p>The launch date isn’t set yet. The waitlist opens as soon as it is.</p>
+        <% } %>
       </div>
     </div>
   </section>
@@ -214,7 +223,7 @@ POST /api/sessions/refresh  <span class="t-bad">401 REFRESH_TOKEN_REUSE_DETECTED
     <div class="container">
       <header class="section-head reveal">
         <p class="eyebrow">Pricing</p>
-        <h2>Early access first. Pricing before launch.</h2>
+        <h2>Pricing is published before launch.</h2>
         <p class="section-lede">We’re not publishing plans until they’re final. Here’s where things stand.</p>
       </header>
 
@@ -222,16 +231,20 @@ POST /api/sessions/refresh  <span class="t-bad">401 REFRESH_TOKEN_REUSE_DETECTED
         <article class="card price-card price-card-featured reveal">
           <div class="price-top">
             <h3>Early access</h3>
-            <span class="badge badge-accent">Open waitlist</span>
+            <span class="badge badge-accent"><%= site.waitlistOpen ? 'Waitlist open' : 'Opens with launch date' %></span>
           </div>
           <p class="price-desc">For developers who want to integrate Voult before public launch and shape what ships.</p>
           <ul class="checklist">
             <li><%- include('../partials/icon', { name: 'check', size: 16 }) %><span>The full auth API: passwords, OAuth, magic links, MFA, passkeys</span></li>
             <li><%- include('../partials/icon', { name: 'check', size: 16 }) %><span><code>@voult/sdk</code>, <code>@voult/express</code> and <code>@voult/cli</code></span></li>
             <li><%- include('../partials/icon', { name: 'check', size: 16 }) %><span>Dashboard, audit log and security controls</span></li>
-            <li><%- include('../partials/icon', { name: 'check', size: 16 }) %><span>Pricing shared with waitlist members first</span></li>
+            <li><%- include('../partials/icon', { name: 'check', size: 16 }) %><span>Pricing shared with early-access members first</span></li>
           </ul>
-          <a href="#waitlist" class="btn btn-primary btn-block">Join the waitlist</a>
+          <% if (site.waitlistOpen) { %>
+            <a href="#start" class="btn btn-primary btn-block">Join the waitlist</a>
+          <% } else { %>
+            <a href="<%= site.docsUrl %>" class="btn btn-primary btn-block" target="_blank" rel="noopener">Explore the docs</a>
+          <% } %>
         </article>
 
         <article class="card price-card reveal">
@@ -248,17 +261,30 @@ POST /api/sessions/refresh  <span class="t-bad">401 REFRESH_TOKEN_REUSE_DETECTED
   </section>
 
   <!-- Final CTA -->
-  <section class="section cta" id="waitlist">
+  <section class="section cta" id="start">
     <div class="container">
       <div class="cta-panel reveal">
         <div class="cta-copy">
-          <h2>Stop rebuilding login. Get early access to Voult.</h2>
-          <p>Join the waitlist for access before launch. We’ll send one confirmation email now and reach out when access opens.</p>
+          <% if (site.waitlistOpen) { %>
+            <h2>Stop rebuilding login. Get early access to Voult.</h2>
+            <p>Join the waitlist for access before launch. We’ll send one confirmation email now and reach out when access opens.</p>
+          <% } else { %>
+            <h2>Stop rebuilding login.</h2>
+            <p>Voult is in active development. The waitlist opens as soon as the launch date is set — until then, explore the API or talk to us.</p>
+          <% } %>
         </div>
         <div class="cta-form">
-          <%- include('../partials/waitlist-form') %>
+          <% if (site.waitlistOpen) { %>
+            <%- include('../partials/waitlist-form') %>
+          <% } else { %>
+            <div class="cta-actions">
+              <a href="<%= site.docsUrl %>" class="btn btn-primary btn-lg" target="_blank" rel="noopener">Explore the docs <%- include('../partials/icon', { name: 'arrow', size: 16 }) %></a>
+              <a href="/contact-us" class="btn btn-secondary btn-lg">Contact us</a>
+            </div>
+          <% } %>
           <div class="cta-links">
-            <a href="<%= site.docsUrl %>" target="_blank" rel="noopener">API docs <%- include('../partials/icon', { name: 'external', size: 13 }) %></a>
+            <% if (site.waitlistOpen) { %><a href="<%= site.docsUrl %>" target="_blank" rel="noopener">API docs <%- include('../partials/icon', { name: 'external', size: 13 }) %></a><% } %>
+            <a href="<%= site.githubUrl %>" target="_blank" rel="noopener">GitHub <%- include('../partials/icon', { name: 'external', size: 13 }) %></a>
             <a href="<%= site.npmUrl('@voult/express') %>" target="_blank" rel="noopener">npm <%- include('../partials/icon', { name: 'external', size: 13 }) %></a>
             <% if (site.playgroundUrl) { %><a href="<%= site.playgroundUrl %>" target="_blank" rel="noopener">Playground <%- include('../partials/icon', { name: 'external', size: 13 }) %></a><% } %>
           </div>

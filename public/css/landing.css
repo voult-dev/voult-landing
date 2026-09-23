@@ -1000,13 +1000,15 @@ h3 { font-size: 1rem; letter-spacing: -0.01em; line-height: 1.35; }
 .waitlist-msg.success { color: var(--ok); }
 .waitlist-msg.error { color: var(--bad); }
 
+.cta-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
+
 .cta-links { display: flex; flex-wrap: wrap; gap: 20px; margin-top: 4px; font-size: 14px; }
 .cta-links a { display: inline-flex; align-items: center; gap: 4px; color: var(--text-2); }
 .cta-links a:hover { color: var(--text); }
 
 @media (max-width: 560px) {
   .cta-panel { padding: 28px 20px; }
-  .waitlist .btn { flex: 1 1 100%; }
+  .waitlist .btn, .cta-actions .btn { flex: 1 1 100%; }
 }
 
 /* =============================================================

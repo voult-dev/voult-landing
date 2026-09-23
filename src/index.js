@@ -34,6 +34,8 @@ app.locals.site = {
     ? null
     : launchDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' }),
 };
+// The waitlist opens the moment a launch date is set.
+app.locals.site.waitlistOpen = Boolean(app.locals.site.launchLabel);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
