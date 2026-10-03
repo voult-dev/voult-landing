@@ -13,7 +13,7 @@ const ARROW = include('../partials/icon', { name: 'arrow', size: 16 });
     <div class="container">
       <a class="release" href="#capabilities">
         <span class="release-tag">Pre-release</span>
-        <span>In active development · See what’s available today</span>
+        <span>Launching <%= site.launch %> · See what’s available today</span>
         <%- include('../partials/icon', { name: 'arrow', size: 14 }) %>
       </a>
 
@@ -25,7 +25,7 @@ const ARROW = include('../partials/icon', { name: 'arrow', size: 16 });
             run on Voult. Your Express app mounts one router and gets back to its own features.
           </p>
           <div class="hero-actions">
-            <a href="#quickstart" class="btn btn-primary">Get started <%- ARROW %></a>
+            <a href="/docs" class="btn btn-primary">Read the docs <%- ARROW %></a>
             <a href="#how" class="btn btn-secondary">How it works</a>
           </div>
         </div>
@@ -153,10 +153,10 @@ const ARROW = include('../partials/icon', { name: 'arrow', size: 16 });
     </div>
   </section>
 
-  <!-- 04 Get started -->
+  <!-- 04 Integration -->
   <section class="section section-alt" id="quickstart">
     <div class="container">
-      <p class="label"><span>04</span>Get started</p>
+      <p class="label"><span>04</span>Integration</p>
       <div class="dx-grid">
         <div class="dx-copy reveal">
           <h2>What using Voult looks like.</h2>
@@ -208,7 +208,7 @@ const ARROW = include('../partials/icon', { name: 'arrow', size: 16 });
           <a href="/contact-us" class="text-link">Contact us <%- include('../partials/icon', { name: 'arrow', size: 14 }) %></a>
         </div>
         <dl class="pricing-table">
-          <div><dt>Availability</dt><dd>Not open for sign-ups yet</dd></div>
+          <div><dt>Availability</dt><dd>Not open for sign-ups yet. Launch is planned for <%= site.launch %>; no exact date yet.</dd></div>
           <div><dt>Included</dt><dd>The full auth API, the three npm packages, the dashboard and audit log</dd></div>
           <div><dt>Plans</dt><dd>Published before public launch</dd></div>
         </dl>
@@ -221,7 +221,7 @@ const ARROW = include('../partials/icon', { name: 'arrow', size: 16 });
     <div class="container cta-inner reveal">
       <div class="cta-copy">
         <h2>Stop maintaining login code.</h2>
-        <p>Voult is in active development. The packages are on npm, and we’re happy to talk.</p>
+        <p>Voult is in active development and launching <%= site.launch %>. The packages are on npm, and we’re happy to talk.</p>
       </div>
       <div class="cta-form">
         <div class="cta-actions">
@@ -232,7 +232,7 @@ const ARROW = include('../partials/icon', { name: 'arrow', size: 16 });
           <% ['@voult/sdk', '@voult/express', '@voult/cli'].forEach((p) => { %>
             <a href="<%= site.npmUrl(p) %>" target="_blank" rel="noopener" class="mono"><%= p %> <%- include('../partials/icon', { name: 'external', size: 12 }) %></a>
           <% }) %>
-          <% if (site.docsUrl) { %><a href="<%= site.docsUrl %>" target="_blank" rel="noopener">Docs <%- include('../partials/icon', { name: 'external', size: 12 }) %></a><% } %>
+          <a href="/docs">Docs</a>
           <% if (site.playgroundUrl) { %><a href="<%= site.playgroundUrl %>" target="_blank" rel="noopener">Playground <%- include('../partials/icon', { name: 'external', size: 12 }) %></a><% } %>
         </p>
       </div>

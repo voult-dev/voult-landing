@@ -1,0 +1,39 @@
+<% layout('layout/boilerplate.ejs') %>
+
+<%- include('../partials/nav') %>
+
+<main id="main" class="docs container">
+  <nav class="docs-nav" aria-label="Documentation">
+    <p class="docs-note">Voult is in pre-release. These are the working docs; APIs may change before launch in <%= site.launch %>.</p>
+    <% [...new Set(pages.map((p) => p.group))].forEach((group) => { %>
+      <h2><%= group %></h2>
+      <ul>
+        <% pages.filter((p) => p.group === group).forEach((p) => { %>
+          <li><a href="/docs/<%= p.slug %>"<% if (p.slug === page.slug) { %> aria-current="page"<% } %>><%= p.title %></a></li>
+        <% }) %>
+      </ul>
+    <% }) %>
+  </nav>
+
+  <article class="docs-body">
+    <%- page.html %>
+  </article>
+
+  <% if (page.toc.length > 1) { %>
+    <nav class="docs-toc" aria-label="On this page">
+      <h2>On this page</h2>
+      <ul>
+        <% page.toc.forEach((h) => { %><li><a href="#<%= h.id %>"><%- h.html %></a></li><% }) %>
+      </ul>
+    </nav>
+  <% } %>
+</main>
+
+<%- include('../partials/footer') %>
+
+<% if (page.hasDiagram) { %>
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true, theme: document.documentElement.dataset.theme === 'dark' ? 'dark' : 'neutral' });
+  </script>
+<% } %>

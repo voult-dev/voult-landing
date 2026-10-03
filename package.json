@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon src/index.js",
+    "docs:sync": "node scripts/sync-docs.js"
   },
   "author": "DevOlabode",
   "license": "ISC",
@@ -17,6 +18,7 @@
     "express-rate-limit": "^8.2.1",
     "express-validator": "^7.3.2",
     "helmet": "^8.1.0",
+    "marked": "^18.0.14",
     "mongoose": "^9.1.2",
     "nodemailer": "^7.0.12"
   },

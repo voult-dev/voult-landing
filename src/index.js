@@ -8,6 +8,7 @@ const ejsMate = require('ejs-mate');
 const { connectDB } = require('../config/database');
 const legalRoutes = require('../routes/legal');
 const landing = require('../content/landing');
+const docs = require('./docs');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -23,8 +24,8 @@ app.use(
   })
 );
 app.locals.site = {
-  // Docs and playground links stay hidden ("Soon") until their URLs are set.
-  docsUrl: process.env.DOCS_URL || null,
+  launch: 'early 2027',
+  // The playground link stays hidden ("Soon") until its URL is set.
   playgroundUrl: process.env.PLAYGROUND_URL || null,
   githubUrl: 'https://github.com/voult-dev',
   npmUrl: (pkg) => `https://www.npmjs.com/package/${pkg}`,
@@ -68,6 +69,13 @@ app.get('/about', (req, res) => {
   res.render('home/description', {
     title: 'About | voult.dev',
   });
+});
+
+app.get('/docs', (req, res) => res.redirect(`/docs/${docs.pages[0].slug}`));
+app.get('/docs/:slug', (req, res, next) => {
+  const page = docs.pages.find((p) => p.slug === req.params.slug);
+  if (!page) return next();
+  res.render('docs/page', { title: `${page.title} | Voult docs`, page, pages: docs.pages });
 });
 
 app.get('/teaser', (req, res) => {
